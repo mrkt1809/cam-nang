@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F8F5EF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cẩm nang">
+<meta name="description" content="Cẩm nang du lịch cá nhân — lưu lại quán ăn ngon, địa điểm tham quan yêu thích">
+<title>Cẩm Nang Du Lịch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Geist:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --bg: #F8F5EF;
+  --surface: #FFFFFF;
+  --surface-2: #F0EBE2;
+  --border: rgba(48, 36, 24, 0.08);
+  --border-2: rgba(48, 36, 24, 0.18);
+  --text: #1F1812;
+  --text-2: #6B5C50;
+  --text-3: #A89C8F;
+  --accent: #B8552A;
+  --accent-dark: #8B3F1F;
+  --star: #C8932E;
+  --danger: #B83A2A;
+  --success: #4A7C3A;
+  --radius-xl: 18px;
+  --radius-lg: 14px;
+  --radius: 11px;
+  --radius-sm: 8px;
+  --sp: 20px;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html, body { height: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#app {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--sp);
+  min-height: 100vh;
+  padding-bottom: 120px;
+}
+
+/* ─────────────── HERO ─────────────── */
+.hero {
+  padding: 52px 0 28px;
+  border-bottom: 0.5px solid var(--border);
+  margin-bottom: 24px;
+}
+.hero-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+.hero-title-wrap { flex: 1; min-width: 0; }
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 64px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+}
+.hero-sub {
+  font-size: 15px;
+  color: var(--text-2);
+  margin-top: 12px;
+  letter-spacing: 0.01em;
+  max-width: 480px;
+}
+.hero-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+.icon-btn {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 0.5px solid var(--border-2);
+  color: var(--text-2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.icon-btn:hover { background: var(--surface-2); color: var(--text); }
+.icon-btn i { font-size: 19px; }
+
+/* ─────────────── SYNC STATUS ─────────────── */
+.sync-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.sync-pill.online { background: rgba(74, 124, 58, 0.1); color: var(--success); }
+.sync-pill.offline { background: rgba(184, 85, 42, 0.1); color: var(--accent-dark); }
+.sync-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+}
+.sync-pill.online .sync-dot { animation: pulse 2s infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ─────────────── SEARCH + FILTERS ─────────────── */
+.search-wrap {
+  position: relative;
+  margin-bottom: 18px;
+}
+.search-wrap > i.ti-search {
+  position: absolute;
+  left: 20px; top: 50%; transform: translateY(-50%);
+  font-size: 19px; color: var(--text-3);
+  pointer-events: none;
+}
+#search {
+  width: 100%;
+  height: 54px;
+  padding: 0 50px 0 52px;
+  background: var(--surface);
+  border: 0.5px solid var(--border-2);
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+#search::placeholder { color: var(--text-3); }
+#search:focus {
+  border-color: var(--text-2);
+  background: var(--surface);
+}
+.clear-search {
+  position: absolute;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: none;
+  color: var(--text-2);
+  display: none;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.clear-search.show { display: flex; }
+.clear-search i { font-size: 14px; }
+
+.filters-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.prov-filter {
+  position: relative;
+  flex-shrink: 0;
+}
+.prov-filter::after {
+  content: '\f0d7';
+  font-family: 'tabler-icons';
+  font-size: 14px;
+  color: var(--text-2);
+  position: absolute;
+  right: 12px; top: 50%; transform: translateY(-50%);
+  pointer-events: none;
+}
+.prov-filter select {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 0.5px solid var(--border-2);
+  border-radius: 100px;
+  padding: 8px 32px 8px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  outline: none;
+}
+.cat-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  flex: 1;
+  margin: 0 -8px;
+  padding: 4px 8px;
+  scrollbar-width: none;
+}
+.cat-tabs::-webkit-scrollbar { display: none; }
+.cat-tab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  border: 0.5px solid var(--border-2);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.cat-tab i { font-size: 14px; }
+.cat-tab:hover { color: var(--text); border-color: var(--text-3); }
+.cat-tab.on {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.stats-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0 24px;
+  font-size: 13px;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+}
+.stats-line strong {
+  color: var(--text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.stats-divider { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); }
+
+/* ─────────────── FIREBASE HINT ─────────────── */
+.fb-hint {
+  background: linear-gradient(135deg, rgba(184, 85, 42, 0.06), rgba(184, 85, 42, 0.03));
+  border: 0.5px solid rgba(184, 85, 42, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.fb-hint i { font-size: 20px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+.fb-hint-body { flex: 1; }
+.fb-hint-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 3px; }
+.fb-hint-body p { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.fb-hint-body a { color: var(--accent); text-decoration: underline; font-weight: 500; }
+
+/* ─────────────── PROVINCE SECTIONS ─────────────── */
+.prov-block { margin-bottom: 44px; }
+.prov-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.prov-name {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  font-variation-settings: 'opsz' 72, 'SOFT' 30;
+  white-space: nowrap;
+}
+.prov-line {
+  flex: 1;
+  height: 0.5px;
+  background: var(--border);
+}
+.prov-count {
+  font-size: 12px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ─────────────── CARDS ─────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+}
+.card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 20px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+}
+.card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px -16px rgba(48, 36, 24, 0.12);
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.card-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-icon i { font-size: 22px; }
+.card-info { flex: 1; min-width: 0; padding-top: 2px; }
+.card-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 36, 'SOFT' 30;
+}
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cat-pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.stars-disp { font-size: 13px; color: var(--star); letter-spacing: 2px; line-height: 1; }
+.card-addr {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+.card-addr i { font-size: 14px; flex-shrink: 0; margin-top: 1px; color: var(--text-3); }
+.card-note {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 0.5px solid var(--border);
+  margin-top: auto;
+}
+.gmaps-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  border: 0.5px solid var(--border-2);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.gmaps-link:hover { background: var(--surface-2); border-color: var(--text-3); }
+.gmaps-link i { font-size: 14px; color: var(--accent); }
+.card-tools { display: flex; gap: 4px; margin-left: auto; }
+.tool-btn {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.tool-btn:hover { background: var(--surface-2); color: var(--text); }
+.tool-btn.del:hover { color: var(--danger); }
+.tool-btn i { font-size: 16px; }
+
+/* ─────────────── EMPTY STATE ─────────────── */
+.empty {
+  padding: 80px 20px;
+  text-align: center;
+}
+.empty-icon {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.empty-icon i { font-size: 32px; color: var(--text-3); }
+.empty h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  font-variation-settings: 'opsz' 36;
+}
+.empty p { color: var(--text-2); font-size: 14px; max-width: 320px; margin: 0 auto; }
+.empty strong { color: var(--text); font-weight: 600; }
+
+/* ─────────────── FAB ─────────────── */
+#fab {
+  position: fixed;
+  bottom: 28px;
+  right: max(28px, calc((100% - 1180px) / 2 + 28px));
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px rgba(48, 36, 24, 0.25);
+  z-index: 40;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+#fab:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(48, 36, 24, 0.3); }
+#fab:active { transform: translateY(0); }
+#fab i { font-size: 26px; }
+
+/* ─────────────── MODAL / BOTTOM SHEET ─────────────── */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(31, 24, 18, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s ease-out;
+}
+.overlay.on { display: flex; }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.sheet {
+  background: var(--surface);
+  width: 100%;
+  max-width: 560px;
+  max-height: 92dvh;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 0 24px 36px;
+  overflow-y: auto;
+  animation: slideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+  scrollbar-width: thin;
+}
+.sheet::-webkit-scrollbar { width: 4px; }
+.sheet::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
+@keyframes slideUp {
+  from { transform: translateY(20%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.sheet-handle {
+  width: 40px; height: 4px;
+  border-radius: 2px;
+  background: var(--border-2);
+  margin: 14px auto 22px;
+}
+.sheet-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 36, 'SOFT' 30;
+}
+
+/* Form */
+.fg { margin-bottom: 16px; }
+.fg label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 7px;
+}
+.fg input,
+.fg select,
+.fg textarea {
+  width: 100%;
+  padding: 13px 15px;
+  font-family: inherit;
+  font-size: 15px;
+  background: var(--surface);
+  border: 0.5px solid var(--border-2);
+  border-radius: var(--radius);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 48px;
+}
+.fg select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B5C50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 38px;
+}
+.fg textarea {
+  height: auto;
+  min-height: 94px;
+  resize: vertical;
+  font-family: inherit;
+}
+.fg input:focus,
+.fg select:focus,
+.fg textarea:focus {
+  border-color: var(--text);
+}
+.r2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.stars-input {
+  display: flex;
+  gap: 4px;
+}
+.s-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 32px;
+  padding: 0 4px;
+  color: #DDD3C5;
+  line-height: 1;
+  transition: color 0.1s, transform 0.15s;
+}
+.s-btn.on { color: var(--star); }
+.s-btn:hover { transform: scale(1.1); }
+.save-btn {
+  width: 100%;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-top: 12px;
+  letter-spacing: 0.02em;
+  transition: opacity 0.15s;
+}
+.save-btn:hover { opacity: 0.9; }
+.save-btn:active { opacity: 0.8; }
+
+/* Share sheet */
+.share-card {
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 14px;
+  background: var(--bg);
+}
+.share-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.share-card h4 i { font-size: 17px; color: var(--text-2); }
+.share-card p { font-size: 13px; color: var(--text-2); margin-bottom: 12px; line-height: 1.5; }
+.share-card textarea {
+  width: 100%;
+  font-size: 11px;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  padding: 11px 13px;
+  border: 0.5px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  resize: vertical;
+  min-height: 90px;
+  max-height: 160px;
+  outline: none;
+  line-height: 1.4;
+}
+.share-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.share-btn {
+  padding: 9px 16px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  border: 0.5px solid var(--border-2);
+  border-radius: 100px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+}
+.share-btn:hover { background: var(--surface-2); }
+.share-btn i { font-size: 15px; }
+
+/* ─────────────── TOAST ─────────────── */
+#toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text);
+  color: var(--bg);
+  padding: 12px 22px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: 0 8px 32px rgba(48, 36, 24, 0.2);
+  white-space: nowrap;
+  max-width: calc(100% - 32px);
+}
+#toast.on {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+#toast i { font-size: 16px; }
+
+/* ─────────────── RESPONSIVE: MOBILE ─────────────── */
+@media (max-width: 700px) {
+  :root { --sp: 16px; }
+  #app { padding: 0 16px; padding-bottom: 100px; }
+  .hero { padding: 28px 0 20px; margin-bottom: 18px; }
+  .hero-row { margin-bottom: 18px; }
+  .hero-title { font-size: 38px; }
+  .hero-sub { font-size: 14px; margin-top: 8px; }
+  .icon-btn { width: 40px; height: 40px; }
+  #search { height: 50px; font-size: 14px; }
+  .search-wrap > i.ti-search { left: 18px; font-size: 17px; }
+  #search { padding: 0 46px 0 46px; }
+  .filters-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .prov-filter { width: 100%; }
+  .prov-filter select { width: 100%; padding: 10px 32px 10px 16px; }
+  .stats-line { padding: 14px 0 18px; font-size: 12px; }
+  .cards { grid-template-columns: 1fr; gap: 10px; }
+  .card { padding: 16px 16px 14px; border-radius: var(--radius-lg); }
+  .card-name { font-size: 18px; }
+  .prov-name { font-size: 22px; }
+  .prov-block { margin-bottom: 32px; }
+  .prov-header { gap: 12px; margin-bottom: 14px; }
+  #fab { right: 20px; bottom: 22px; width: 54px; height: 54px; }
+  #fab i { font-size: 23px; }
+  .sheet { padding: 0 20px 32px; }
+  .sheet-title { font-size: 22px; margin-bottom: 18px; }
+  .fg label { font-size: 10px; }
+  .fg input, .fg select, .fg textarea { padding: 12px 14px; font-size: 16px; }
+}
+
+/* ─────────────── DESKTOP MODAL CENTER ─────────────── */
+@media (min-width: 701px) {
+  .overlay { align-items: center; padding: 24px; }
+  .sheet {
+    border-radius: var(--radius-xl);
+    max-height: 88vh;
+    width: 560px;
+    animation: zoomIn 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  @keyframes zoomIn {
+    from { transform: scale(0.96); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .sheet-handle { display: none; }
+  .sheet { padding: 28px 28px 32px; }
+}
+
+/* ─────────────── DARK MODE (auto, optional) ─────────────── */
+/* @media (prefers-color-scheme: dark) { ... } */
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ─── HERO ─── -->
+  <header class="hero">
+    <div class="hero-row">
+      <div class="hero-title-wrap">
+        <h1 class="hero-title">Cẩm <em>Nang</em></h1>
+        <p class="hero-sub">Sổ tay những nơi đáng nhớ — quán ăn, điểm tham quan, kinh nghiệm của riêng bạn.</p>
+      </div>
+      <div class="hero-actions">
+        <span class="sync-pill" id="sync-status">
+          <span class="sync-dot"></span>
+          <span id="sync-label">Đang tải...</span>
+        </span>
+        <button class="icon-btn" onclick="openShare()" aria-label="Xuất / Nhập dữ liệu">
+          <i class="ti ti-share"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <i class="ti ti-search"></i>
+      <input id="search" type="search" placeholder="Tìm quán ăn, điểm tham quan, tỉnh thành..." oninput="doFilter()" autocomplete="off">
+      <button class="clear-search" id="clear-btn" onclick="clearSearch()" aria-label="Xóa tìm kiếm"><i class="ti ti-x"></i></button>
+    </div>
+
+    <div class="filters-row">
+      <div class="prov-filter">
+        <select id="fprov" onchange="doFilter()" aria-label="Lọc theo tỉnh thành">
+          <option value="">Mọi tỉnh thành</option>
+        </select>
+      </div>
+      <div class="cat-tabs" id="cat-tabs">
+        <button class="cat-tab on" data-c="" onclick="setCat(this, '')"><i class="ti ti-layout-grid"></i> Tất cả</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats-line">
+    <span><strong id="stat-locs">0</strong> địa điểm</span>
+    <span class="stats-divider"></span>
+    <span><strong id="stat-provs">0</strong> tỉnh thành đã lưu</span>
+  </div>
+
+  <!-- Firebase setup hint (chỉ hiện khi chưa có Firebase) -->
+  <div id="fb-hint" class="fb-hint" style="display: none">
+    <i class="ti ti-cloud-off"></i>
+    <div class="fb-hint-body">
+      <div class="fb-hint-title">Chưa kết nối Firebase — đang dùng bộ nhớ máy</div>
+      <p>Dữ liệu hiện đang lưu trong trình duyệt của thiết bị này. Để đồng bộ giữa máy tính và điện thoại, hãy <a href="#setup" onclick="document.getElementById('fb-hint').style.display='none';return false;">cấu hình Firebase</a> theo file README.</p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <main id="content"></main>
+
+  <!-- FAB -->
+  <button id="fab" onclick="openEdit()" aria-label="Thêm địa điểm mới">
+    <i class="ti ti-plus"></i>
+  </button>
+
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite">
+    <i class="ti ti-check"></i>
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- ─── ADD/EDIT SHEET ─── -->
+  <div class="overlay" id="edit-overlay">
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <h2 class="sheet-title" id="sheet-title">Thêm địa điểm mới</h2>
+      <div class="fg">
+        <label>Tên địa điểm</label>
+        <input id="f-name" type="text" placeholder="VD: Bún chả Hương Liên, Vinpearl...">
+      </div>
+      <div class="r2">
+        <div class="fg" style="margin: 0;">
+          <label>Tỉnh thành</label>
+          <select id="f-prov"><option value="">— Chọn —</option></select>
+        </div>
+        <div class="fg" style="margin: 0;">
+          <label>Loại hình</label>
+          <select id="f-cat"><option value="">— Chọn —</option></select>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Địa chỉ</label>
+        <input id="f-addr" type="text" placeholder="Số nhà, đường, phường/quận...">
+      </div>
+      <div class="fg">
+        <label>Ghi chú / Kinh nghiệm</label>
+        <textarea id="f-desc" placeholder="Món ngon, giá cả, giờ mở cửa, tip..."></textarea>
+      </div>
+      <div class="fg">
+        <label>Đánh giá của bạn</label>
+        <div class="stars-input" id="stars-input">
+          <button class="s-btn" data-v="1" aria-label="1 sao">★</button>
+          <button class="s-btn" data-v="2" aria-label="2 sao">★</button>
+          <button class="s-btn" data-v="3" aria-label="3 sao">★</button>
+          <button class="s-btn" data-v="4" aria-label="4 sao">★</button>
+          <button class="s-btn" data-v="5" aria-label="5 sao">★</button>
+        </div>
+      </div>
+      <button class="save-btn" onclick="doSave()">Lưu địa điểm</button>
+    </div>
+  </div>
+
+  <!-- ─── SHARE SHEET ─── -->
+  <div class="overlay" id="share-overlay">
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <h2 class="sheet-title">Xuất / Nhập dữ liệu</h2>
+      <div class="share-card">
+        <h4><i class="ti ti-download"></i> Xuất để chia sẻ hoặc backup</h4>
+        <p>Sao chép JSON và lưu vào nơi an toàn (Google Drive, Notion...) hoặc gửi cho bạn bè.</p>
+        <textarea id="export-data" readonly></textarea>
+        <div class="share-actions">
+          <button class="share-btn" onclick="doCopyExport()"><i class="ti ti-copy"></i> Sao chép</button>
+        </div>
+      </div>
+      <div class="share-card">
+        <h4><i class="ti ti-upload"></i> Nhập từ backup hoặc bạn bè</h4>
+        <p>Dán JSON vào ô bên dưới, chọn cách nhập.</p>
+        <textarea id="import-data" placeholder="Dán JSON vào đây..."></textarea>
+        <div class="share-actions">
+          <button class="share-btn" onclick="doImportMerge()"><i class="ti ti-git-merge"></i> Gộp vào</button>
+          <button class="share-btn" onclick="doImportReplace()"><i class="ti ti-replace"></i> Thay thế hết</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════ FIREBASE MODULE ═══════════════════════ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ════════════════════════════════════════════════════════════════
+//  PASTE YOUR FIREBASE CONFIG HERE
+//  Lấy từ: Firebase Console → Project Settings → Your apps → Web app
+// ════════════════════════════════════════════════════════════════
+const firebaseConfig = {
+  apiKey: "AIzaSyBibMNDkMUdsaa5nqBpAM7X6Wxj3SXSHyA",
+  authDomain: "camnang-dulich.firebaseapp.com",
+  projectId: "camnang-dulich",
+  storageBucket: "camnang-dulich.firebasestorage.app",
+  messagingSenderId: "631798861431",
+  appId: "1:631798861431:web:df25522a0de3af5e4d0072"
+};
+// ════════════════════════════════════════════════════════════════
+
+let useFirebase = firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY";
+
+if (useFirebase) {
+  try {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    window.firebase = { db, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy };
+  } catch (e) {
+    console.error("Firebase init failed:", e);
+    useFirebase = false;
+  }
+}
+window.useFirebase = useFirebase;
+window.dispatchEvent(new CustomEvent("app-ready"));
+</script>
+
+<!-- ═══════════════════════ APP LOGIC ═══════════════════════ -->
+<script>
+const PROVS = ['Hà Nội','TP. Hồ Chí Minh','Đà Nẵng','Hội An','Huế','Nha Trang','Đà Lạt','Phú Quốc','Hạ Long','Sapa','Ninh Bình','Hải Phòng','Cần Thơ','Vũng Tàu','Phan Thiết','Quy Nhơn','Hà Giang','Lào Cai','Buôn Ma Thuột','Mộc Châu','Quảng Ngãi','Đồng Hới','Vinh','Khác'];
+
+const CATS = [
+  { id: 'food',      label: 'Ăn uống',     icon: 'ti-soup',          bg: '#FAEDD2', col: '#92580A', pillBg: '#FAEDD2', pillColor: '#5C3A05' },
+  { id: 'cafe',      label: 'Cà phê',      icon: 'ti-coffee',        bg: '#F2E4D7', col: '#7B3018', pillBg: '#F2E4D7', pillColor: '#4A1B0C' },
+  { id: 'sight',     label: 'Tham quan',   icon: 'ti-camera',        bg: '#DEEAF5', col: '#1054A0', pillBg: '#DEEAF5', pillColor: '#042C53' },
+  { id: 'stay',      label: 'Lưu trú',     icon: 'ti-bed',           bg: '#E7E5F2', col: '#42399E', pillBg: '#E7E5F2', pillColor: '#26215C' },
+  { id: 'shop',      label: 'Mua sắm',     icon: 'ti-shopping-cart', bg: '#F4E0EA', col: '#8B2A57', pillBg: '#F4E0EA', pillColor: '#4B1528' },
+  { id: 'nature',    label: 'Thiên nhiên', icon: 'ti-leaf',          bg: '#E0EBD2', col: '#2F5E0A', pillBg: '#E0EBD2', pillColor: '#173404' },
+  { id: 'entertain', label: 'Giải trí',    icon: 'ti-music',         bg: '#D2EBE2', col: '#0A5E44', pillBg: '#D2EBE2', pillColor: '#04342C' },
+  { id: 'bar',       label: 'Bar / Pub',   icon: 'ti-beer',          bg: '#F4DDDD', col: '#8B2020', pillBg: '#F4DDDD', pillColor: '#501313' },
+];
+const CM = Object.fromEntries(CATS.map(c => [c.id, c]));
+
+const SAMPLES = [
+  { id: 's1',  name: 'Bún chả Hương Liên',  province: 'Hà Nội',           category: 'food',   address: '24 Lê Văn Hưu, Hai Bà Trưng',   description: 'Chả nướng đậm vị, nên gọi thêm nem cua bể. Obama từng ghé.', rating: 5 },
+  { id: 's2',  name: 'Cộng Cà Phê',         province: 'Hà Nội',           category: 'cafe',   address: '152 Triệu Việt Vương',           description: 'Phong cách hoài cổ Việt Nam. Cà phê cốt dừa là món signature.', rating: 4 },
+  { id: 's3',  name: 'Hồ Hoàn Kiếm',         province: 'Hà Nội',           category: 'sight',  address: 'Đinh Tiên Hoàng, Hoàn Kiếm',     description: 'Đẹp nhất lúc sáng sớm. Cuối tuần phố đi bộ rất sôi động.', rating: 5 },
+  { id: 's4',  name: 'Mì Quảng Bà Vị',      province: 'Đà Nẵng',          category: 'food',   address: '166 Lê Đình Dương',              description: 'Chuẩn vị miền Trung, nước nhất đậm đà. Nên ăn sáng hoặc trưa.', rating: 5 },
+  { id: 's5',  name: 'Phố cổ Hội An',        province: 'Hội An',           category: 'sight',  address: 'Phố cổ Hội An, Quảng Nam',       description: 'Di sản UNESCO. Đẹp nhất ban đêm khi thắp đèn lồng rực rỡ.', rating: 5 },
+  { id: 's6',  name: 'La Viet Coffee',      province: 'Đà Lạt',           category: 'cafe',   address: '200 Nguyễn Công Trứ',            description: 'Specialty coffee nổi tiếng nhất Đà Lạt. View đẹp, cuối tuần nên đặt trước.', rating: 5 },
+  { id: 's7',  name: 'Bánh Mì Phượng',      province: 'Hội An',           category: 'food',   address: '2B Phan Chu Trinh',              description: 'Anthony Bourdain ca ngợi. Đến sớm tránh xếp hàng dài cả phố.', rating: 5 },
+  { id: 's8',  name: 'Bãi Sao',             province: 'Phú Quốc',         category: 'nature', address: 'An Thới, Phú Quốc',              description: 'Bãi biển đẹp nhất Phú Quốc. Cát trắng mịn, nước trong xanh.', rating: 5 },
+  { id: 's9',  name: 'Vịnh Hạ Long',         province: 'Hạ Long',          category: 'nature', address: 'Hạ Long, Quảng Ninh',            description: 'Di sản thiên nhiên thế giới. Nên đặt tour ngủ thuyền 2 ngày 1 đêm.', rating: 5 },
+  { id: 's10', name: 'Nhà thờ Đức Bà',       province: 'TP. Hồ Chí Minh',  category: 'sight',  address: '1 Công xã Paris, Quận 1',        description: 'Kiến trúc Gothic nổi bật. Khu xung quanh nhiều quán cà phê đẹp.', rating: 4 },
+];
+
+const STORAGE_KEY = 'camnang-du-lich-v1';
+const FB_COLLECTION = 'locations';
+
+let locs = [];
+let editId = null;
+let rating = 0;
+let flt = { prov: '', cat: '', q: '' };
+
+window.addEventListener('app-ready', init);
+
+async function init() {
+  buildUI();
+
+  if (window.useFirebase) {
+    setSyncStatus('online', 'Đang đồng bộ');
+    const { db, collection, onSnapshot } = window.firebase;
+    // Real-time listener — tự động cập nhật khi data thay đổi
+    onSnapshot(collection(db, FB_COLLECTION), (snap) => {
+      locs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      // Nếu collection trống lần đầu, seed bằng samples
+      if (locs.length === 0) {
+        seedFirebase();
+      } else {
+        render();
+        setSyncStatus('online', 'Đã đồng bộ');
+      }
+    }, (err) => {
+      console.error('Firestore error:', err);
+      setSyncStatus('offline', 'Lỗi đồng bộ');
+      loadFromLocal();
+    });
+  } else {
+    document.getElementById('fb-hint').style.display = 'flex';
+    setSyncStatus('offline', 'Lưu cục bộ');
+    loadFromLocal();
+  }
+}
+
+function loadFromLocal() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  locs = raw ? JSON.parse(raw) : [...SAMPLES];
+  if (!raw) saveLocal();
+  render();
+}
+
+function saveLocal() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(locs));
+}
+
+async function seedFirebase() {
+  const { db, collection, addDoc } = window.firebase;
+  for (const s of SAMPLES) {
+    const { id, ...data } = s;
+    await addDoc(collection(db, FB_COLLECTION), data);
+  }
+}
+
+function setSyncStatus(state, label) {
+  const pill = document.getElementById('sync-status');
+  pill.classList.remove('online', 'offline');
+  pill.classList.add(state);
+  document.getElementById('sync-label').textContent = label;
+}
+
+function buildUI() {
+  const fp = document.getElementById('f-prov'), fprov = document.getElementById('fprov');
+  PROVS.forEach(p => {
+    fp.insertAdjacentHTML('beforeend', `<option value="${p}">${p}</option>`);
+    fprov.insertAdjacentHTML('beforeend', `<option value="${p}">${p}</option>`);
+  });
+  const fc = document.getElementById('f-cat');
+  CATS.forEach(c => fc.insertAdjacentHTML('beforeend', `<option value="${c.id}">${c.label}</option>`));
+  const tabs = document.getElementById('cat-tabs');
+  CATS.forEach(c => {
+    tabs.insertAdjacentHTML('beforeend', `<button class="cat-tab" data-c="${c.id}" onclick="setCat(this, '${c.id}')"><i class="ti ${c.icon}"></i> ${c.label}</button>`);
+  });
+  document.querySelectorAll('.s-btn').forEach(b => {
+    b.addEventListener('click', () => { rating = parseInt(b.dataset.v); updStars(); });
+  });
+}
+
+function filtered() {
+  return locs.filter(l => {
+    if (flt.prov && l.province !== flt.prov) return false;
+    if (flt.cat && l.category !== flt.cat) return false;
+    if (flt.q) {
+      const q = flt.q.toLowerCase();
+      const hay = [l.name, l.province, l.address || '', l.description || ''].join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function render() {
+  const f = filtered();
+  // Sort within each province by rating desc, then name
+  f.sort((a, b) => (b.rating || 0) - (a.rating || 0) || a.name.localeCompare(b.name, 'vi'));
+  const byProv = {};
+  f.forEach(l => { if (!byProv[l.province]) byProv[l.province] = []; byProv[l.province].push(l); });
+  // Sort provinces by count desc, then alphabetically
+  const provs = Object.keys(byProv).sort((a, b) => byProv[b].length - byProv[a].length || a.localeCompare(b, 'vi'));
+  const el = document.getElementById('content');
+  if (!f.length) {
+    el.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon"><i class="ti ti-map-off"></i></div>
+        <h3>Chưa có địa điểm nào</h3>
+        <p>Nhấn nút <strong>+</strong> ở góc dưới để thêm địa điểm đầu tiên vào cẩm nang của bạn.</p>
+      </div>`;
+  } else {
+    el.innerHTML = provs.map(prov => {
+      const items = byProv[prov];
+      return `<section class="prov-block">
+        <header class="prov-header">
+          <h2 class="prov-name">${escapeHTML(prov)}</h2>
+          <span class="prov-line"></span>
+          <span class="prov-count">${items.length} địa điểm</span>
+        </header>
+        <div class="cards">${items.map(cardHTML).join('')}</div>
+      </section>`;
+    }).join('');
+  }
+  document.getElementById('stat-locs').textContent = f.length;
+  document.getElementById('stat-provs').textContent = provs.length;
+}
+
+function cardHTML(l) {
+  const c = CM[l.category] || { icon: 'ti-map-pin', bg: '#F0EBE2', col: '#6B5C50', label: 'Khác', pillBg: '#F0EBE2', pillColor: '#1F1812' };
+  const stars = l.rating ? '★'.repeat(l.rating) : '';
+  const mapsQ = encodeURIComponent((l.name + (l.address ? ', ' + l.address : '') + ', Việt Nam'));
+  return `
+    <article class="card">
+      <div class="card-head">
+        <div class="card-icon" style="background: ${c.bg}">
+          <i class="ti ${c.icon}" style="color: ${c.col}"></i>
+        </div>
+        <div class="card-info">
+          <h3 class="card-name">${escapeHTML(l.name)}</h3>
+          <div class="card-meta">
+            <span class="cat-pill" style="background: ${c.pillBg}; color: ${c.pillColor}">${c.label}</span>
+            ${stars ? `<span class="stars-disp">${stars}</span>` : ''}
+          </div>
+        </div>
+      </div>
+      ${l.address ? `<div class="card-addr"><i class="ti ti-map-pin"></i><span>${escapeHTML(l.address)}</span></div>` : ''}
+      ${l.description ? `<p class="card-note">${escapeHTML(l.description)}</p>` : ''}
+      <div class="card-foot">
+        <a class="gmaps-link" href="https://www.google.com/maps/search/?api=1&query=${mapsQ}" target="_blank" rel="noopener">
+          <i class="ti ti-brand-google-maps"></i> Google Maps
+        </a>
+        <div class="card-tools">
+          <button class="tool-btn" onclick="openEdit('${l.id}')" aria-label="Sửa"><i class="ti ti-pencil"></i></button>
+          <button class="tool-btn del" onclick="doDelete('${l.id}')" aria-label="Xóa"><i class="ti ti-trash"></i></button>
+        </div>
+      </div>
+    </article>`;
+}
+
+function escapeHTML(s) {
+  return String(s || '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+
+function doFilter() {
+  flt.prov = document.getElementById('fprov').value;
+  flt.q = document.getElementById('search').value;
+  document.getElementById('clear-btn').classList.toggle('show', !!flt.q);
+  render();
+}
+
+function clearSearch() {
+  document.getElementById('search').value = '';
+  flt.q = '';
+  document.getElementById('clear-btn').classList.remove('show');
+  render();
+}
+
+function setCat(el, cat) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  flt.cat = cat;
+  render();
+}
+
+function openEdit(id = null) {
+  editId = id;
+  rating = 0;
+  document.getElementById('sheet-title').textContent = id ? 'Chỉnh sửa địa điểm' : 'Thêm địa điểm mới';
+  if (id) {
+    const l = locs.find(x => x.id === id);
+    document.getElementById('f-name').value = l.name || '';
+    document.getElementById('f-prov').value = l.province || '';
+    document.getElementById('f-cat').value = l.category || '';
+    document.getElementById('f-addr').value = l.address || '';
+    document.getElementById('f-desc').value = l.description || '';
+    rating = l.rating || 0;
+  } else {
+    ['f-name', 'f-addr', 'f-desc'].forEach(x => document.getElementById(x).value = '');
+    document.getElementById('f-prov').value = '';
+    document.getElementById('f-cat').value = '';
+    rating = 0;
+  }
+  updStars();
+  document.getElementById('edit-overlay').classList.add('on');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('f-name').focus(), 300);
+}
+
+function closeEdit() {
+  document.getElementById('edit-overlay').classList.remove('on');
+  document.body.style.overflow = '';
+  editId = null;
+}
+
+async function doSave() {
+  const name = document.getElementById('f-name').value.trim();
+  const province = document.getElementById('f-prov').value;
+  const category = document.getElementById('f-cat').value;
+  if (!name || !province || !category) {
+    alert('Vui lòng nhập tên, chọn tỉnh thành và loại hình.');
+    return;
+  }
+  const data = {
+    name, province, category,
+    address: document.getElementById('f-addr').value.trim(),
+    description: document.getElementById('f-desc').value.trim(),
+    rating
+  };
+
+  if (window.useFirebase) {
+    try {
+      const { db, collection, doc, addDoc, setDoc } = window.firebase;
+      if (editId) {
+        await setDoc(doc(db, FB_COLLECTION, editId), data);
+      } else {
+        await addDoc(collection(db, FB_COLLECTION), { ...data, createdAt: Date.now() });
+      }
+      // onSnapshot sẽ tự re-render
+    } catch (e) {
+      console.error(e);
+      toast('Lỗi khi lưu, kiểm tra mạng', 'error');
+      return;
+    }
+  } else {
+    if (editId) {
+      const i = locs.findIndex(x => x.id === editId);
+      locs[i] = { ...data, id: editId };
+    } else {
+      locs.unshift({ ...data, id: 'l' + Date.now() });
+    }
+    saveLocal();
+    render();
+  }
+  closeEdit();
+  toast(editId ? 'Đã cập nhật địa điểm' : 'Đã thêm địa điểm mới');
+}
+
+async function doDelete(id) {
+  if (!confirm('Xóa địa điểm này?')) return;
+  if (window.useFirebase) {
+    try {
+      const { db, doc, deleteDoc } = window.firebase;
+      await deleteDoc(doc(db, FB_COLLECTION, id));
+    } catch (e) {
+      console.error(e);
+      toast('Lỗi khi xóa', 'error');
+      return;
+    }
+  } else {
+    locs = locs.filter(l => l.id !== id);
+    saveLocal();
+    render();
+  }
+  toast('Đã xóa');
+}
+
+function updStars() {
+  document.querySelectorAll('.s-btn').forEach(b => b.classList.toggle('on', parseInt(b.dataset.v) <= rating));
+}
+
+// ─── Share ───
+function openShare() {
+  document.getElementById('export-data').value = JSON.stringify(locs, null, 2);
+  document.getElementById('import-data').value = '';
+  document.getElementById('share-overlay').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeShare() {
+  document.getElementById('share-overlay').classList.remove('on');
+  document.body.style.overflow = '';
+}
+function doCopyExport() {
+  const ta = document.getElementById('export-data');
+  navigator.clipboard.writeText(ta.value)
+    .then(() => toast('Đã sao chép vào clipboard'))
+    .catch(() => { ta.select(); document.execCommand('copy'); toast('Đã sao chép'); });
+}
+async function doImportMerge() {
+  try {
+    const d = JSON.parse(document.getElementById('import-data').value);
+    if (!Array.isArray(d)) throw 0;
+    if (window.useFirebase) {
+      const { db, collection, addDoc } = window.firebase;
+      let added = 0;
+      for (const item of d) {
+        const { id, ...data } = item;
+        await addDoc(collection(db, FB_COLLECTION), data);
+        added++;
+      }
+      toast(`Đã thêm ${added} địa điểm`);
+    } else {
+      const ids = new Set(locs.map(l => l.id));
+      const added = d.filter(l => !ids.has(l.id));
+      locs = [...locs, ...added];
+      saveLocal();
+      render();
+      toast(`Đã gộp ${added.length} địa điểm`);
+    }
+    closeShare();
+  } catch (e) { alert('Dữ liệu không hợp lệ!'); }
+}
+async function doImportReplace() {
+  if (!confirm('Thay thế TOÀN BỘ dữ liệu hiện tại? Hành động này không thể hoàn tác.')) return;
+  try {
+    const d = JSON.parse(document.getElementById('import-data').value);
+    if (!Array.isArray(d)) throw 0;
+    if (window.useFirebase) {
+      const { db, collection, doc, deleteDoc, addDoc } = window.firebase;
+      // Delete all current
+      for (const l of locs) {
+        await deleteDoc(doc(db, FB_COLLECTION, l.id));
+      }
+      for (const item of d) {
+        const { id, ...data } = item;
+        await addDoc(collection(db, FB_COLLECTION), data);
+      }
+    } else {
+      locs = d;
+      saveLocal();
+      render();
+    }
+    closeShare();
+    toast(`Đã nhập ${d.length} địa điểm`);
+  } catch (e) { alert('Dữ liệu không hợp lệ!'); }
+}
+
+// ─── Toast ───
+let toastTimer;
+function toast(msg) {
+  document.getElementById('toast-msg').textContent = msg;
+  const el = document.getElementById('toast');
+  el.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('on'), 2400);
+}
+
+// Close overlay on background click
+document.getElementById('edit-overlay').addEventListener('click', e => { if (e.target.id === 'edit-overlay') closeEdit(); });
+document.getElementById('share-overlay').addEventListener('click', e => { if (e.target.id === 'share-overlay') closeShare(); });
+// Close on ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeEdit();
+    closeShare();
+  }
+});
+
+// Expose functions for inline onclick handlers
+window.doFilter = doFilter;
+window.clearSearch = clearSearch;
+window.setCat = setCat;
+window.openEdit = openEdit;
+window.closeEdit = closeEdit;
+window.doSave = doSave;
+window.doDelete = doDelete;
+window.openShare = openShare;
+window.closeShare = closeShare;
+window.doCopyExport = doCopyExport;
+window.doImportMerge = doImportMerge;
+window.doImportReplace = doImportReplace;
+</script>
+</body>
+</html>
