@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#F8F5EF">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cẩm nang">
-<meta name="description" content="Cẩm nang du lịch cá nhân — lưu lại quán ăn ngon, địa điểm tham quan yêu thích">
 <title>Cẩm Nang Du Lịch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,54 +46,27 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
-#app {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 var(--sp);
-  min-height: 100vh;
-  padding-bottom: 120px;
-}
+#app { max-width: 1180px; margin: 0 auto; padding: 0 var(--sp) 120px; min-height: 100vh; }
 
-/* ─────────────── HERO ─────────────── */
-.hero {
-  padding: 52px 0 28px;
-  border-bottom: 0.5px solid var(--border);
-  margin-bottom: 24px;
-}
-.hero-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 26px;
-}
+/* ─── HERO ─── */
+.hero { padding: 52px 0 28px; border-bottom: 0.5px solid var(--border); margin-bottom: 24px; }
+.hero-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
 .hero-title-wrap { flex: 1; min-width: 0; }
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(40px, 7vw, 64px);
-  font-weight: 400;
-  line-height: 0.95;
+  font-weight: 400; line-height: 0.95;
   letter-spacing: -0.025em;
-  color: var(--text);
   font-variation-settings: 'opsz' 144, 'SOFT' 30;
 }
 .hero-title em {
-  font-style: italic;
-  font-weight: 300;
-  color: var(--accent);
+  font-style: italic; font-weight: 300; color: var(--accent);
   font-variation-settings: 'opsz' 144, 'SOFT' 100;
 }
-.hero-sub {
-  font-size: 15px;
-  color: var(--text-2);
-  margin-top: 12px;
-  letter-spacing: 0.01em;
-  max-width: 480px;
-}
-.hero-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+.hero-sub { font-size: 15px; color: var(--text-2); margin-top: 12px; max-width: 480px; }
+.hero-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
 .icon-btn {
   width: 44px; height: 44px;
   border-radius: 12px;
@@ -108,332 +80,251 @@ body {
 .icon-btn:hover { background: var(--surface-2); color: var(--text); }
 .icon-btn i { font-size: 19px; }
 
-/* ─────────────── SYNC STATUS ─────────────── */
 .sync-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  font-size: 11px;
-  font-weight: 500;
-  border-radius: 100px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; font-size: 11px; font-weight: 500;
+  border-radius: 100px; letter-spacing: 0.03em; text-transform: uppercase;
 }
 .sync-pill.online { background: rgba(74, 124, 58, 0.1); color: var(--success); }
 .sync-pill.offline { background: rgba(184, 85, 42, 0.1); color: var(--accent-dark); }
-.sync-dot {
-  width: 6px; height: 6px; border-radius: 50%; background: currentColor;
-}
+.sync-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .sync-pill.online .sync-dot { animation: pulse 2s infinite; }
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-/* ─────────────── SEARCH + FILTERS ─────────────── */
-.search-wrap {
-  position: relative;
-  margin-bottom: 18px;
-}
+/* Search */
+.search-wrap { position: relative; margin-bottom: 18px; }
 .search-wrap > i.ti-search {
-  position: absolute;
-  left: 20px; top: 50%; transform: translateY(-50%);
-  font-size: 19px; color: var(--text-3);
-  pointer-events: none;
+  position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+  font-size: 19px; color: var(--text-3); pointer-events: none;
 }
 #search {
-  width: 100%;
-  height: 54px;
+  width: 100%; height: 54px;
   padding: 0 50px 0 52px;
   background: var(--surface);
   border: 0.5px solid var(--border-2);
   border-radius: 14px;
-  font-family: inherit;
-  font-size: 15px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.15s, background 0.15s;
+  font-family: inherit; font-size: 15px;
+  color: var(--text); outline: none;
+  transition: border-color 0.15s;
 }
 #search::placeholder { color: var(--text-3); }
-#search:focus {
-  border-color: var(--text-2);
-  background: var(--surface);
-}
+#search:focus { border-color: var(--text-2); }
 .clear-search {
-  position: absolute;
-  right: 16px; top: 50%; transform: translateY(-50%);
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--surface-2);
-  border: none;
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--surface-2); border: none;
   color: var(--text-2);
-  display: none;
-  align-items: center; justify-content: center;
-  cursor: pointer;
+  display: none; align-items: center; justify-content: center; cursor: pointer;
 }
 .clear-search.show { display: flex; }
 .clear-search i { font-size: 14px; }
 
-.filters-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 8px;
-}
-.prov-filter {
-  position: relative;
-  flex-shrink: 0;
-}
+/* Filters */
+.filters-row { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+.prov-filter { position: relative; flex-shrink: 0; }
 .prov-filter::after {
-  content: '\f0d7';
-  font-family: 'tabler-icons';
-  font-size: 14px;
-  color: var(--text-2);
-  position: absolute;
-  right: 12px; top: 50%; transform: translateY(-50%);
+  content: '\f0d7'; font-family: 'tabler-icons';
+  font-size: 14px; color: var(--text-2);
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
   pointer-events: none;
 }
 .prov-filter select {
-  -webkit-appearance: none;
-  appearance: none;
+  -webkit-appearance: none; appearance: none;
   background: transparent;
   border: 0.5px solid var(--border-2);
   border-radius: 100px;
   padding: 8px 32px 8px 14px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-  outline: none;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  color: var(--text); cursor: pointer; outline: none;
 }
 .cat-tabs {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  flex: 1;
-  margin: 0 -8px;
-  padding: 4px 8px;
+  display: flex; gap: 6px; overflow-x: auto; flex: 1;
+  margin: 0 -8px; padding: 4px 8px;
   scrollbar-width: none;
 }
 .cat-tabs::-webkit-scrollbar { display: none; }
 .cat-tab {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  display: flex; align-items: center; gap: 5px;
   padding: 7px 14px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 500;
-  border: 0.5px solid var(--border-2);
-  border-radius: 100px;
-  background: transparent;
-  color: var(--text-2);
-  cursor: pointer;
-  white-space: nowrap;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  border: 0.5px solid var(--border-2); border-radius: 100px;
+  background: transparent; color: var(--text-2);
+  cursor: pointer; white-space: nowrap;
   transition: all 0.15s;
 }
 .cat-tab i { font-size: 14px; }
 .cat-tab:hover { color: var(--text); border-color: var(--text-3); }
-.cat-tab.on {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--bg);
-}
+.cat-tab.on { background: var(--text); border-color: var(--text); color: var(--bg); }
 
 .stats-line {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 0 24px;
-  font-size: 13px;
-  color: var(--text-2);
-  letter-spacing: 0.02em;
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 0 14px;
+  font-size: 13px; color: var(--text-2);
+  flex-wrap: wrap;
 }
-.stats-line strong {
-  color: var(--text);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
+.stats-line strong { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
 .stats-divider { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); }
+.view-toggle { margin-left: auto; display: flex; gap: 4px; background: var(--surface-2); border-radius: 100px; padding: 3px; }
+.vt-btn {
+  display: flex; align-items: center; gap: 4px;
+  padding: 5px 11px; font-family: inherit; font-size: 12px; font-weight: 500;
+  background: transparent; border: none; border-radius: 100px;
+  color: var(--text-2); cursor: pointer;
+  transition: all 0.15s;
+}
+.vt-btn i { font-size: 14px; }
+.vt-btn.on { background: var(--surface); color: var(--text); }
 
-/* ─────────────── FIREBASE HINT ─────────────── */
 .fb-hint {
-  background: linear-gradient(135deg, rgba(184, 85, 42, 0.06), rgba(184, 85, 42, 0.03));
+  background: rgba(184, 85, 42, 0.06);
   border: 0.5px solid rgba(184, 85, 42, 0.2);
   border-radius: var(--radius-lg);
-  padding: 16px 18px;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  padding: 16px 18px; margin-bottom: 28px;
+  display: flex; align-items: flex-start; gap: 12px;
 }
 .fb-hint i { font-size: 20px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
-.fb-hint-body { flex: 1; }
-.fb-hint-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 3px; }
-.fb-hint-body p { font-size: 13px; color: var(--text-2); line-height: 1.5; }
-.fb-hint-body a { color: var(--accent); text-decoration: underline; font-weight: 500; }
+.fb-hint-title { font-weight: 600; font-size: 14px; margin-bottom: 3px; }
+.fb-hint p { font-size: 13px; color: var(--text-2); line-height: 1.5; }
 
-/* ─────────────── PROVINCE SECTIONS ─────────────── */
-.prov-block { margin-bottom: 44px; }
+/* ─── PROVINCE SECTIONS ─── */
+.prov-block { margin-bottom: 32px; }
 .prov-header {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 16px; cursor: pointer;
+  user-select: none; -webkit-user-select: none;
+  padding: 2px 0;
+  transition: opacity 0.15s;
 }
+.prov-header:hover { opacity: 0.7; }
+.prov-chevron {
+  font-size: 18px; color: var(--text-2);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.prov-block.collapsed .prov-chevron { transform: rotate(-90deg); }
+.prov-block.collapsed .cards,
+.prov-block.collapsed .list { display: none; }
+.prov-block.collapsed { margin-bottom: 12px; }
 .prov-name {
   font-family: var(--font-display);
   font-size: clamp(22px, 3vw, 28px);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  color: var(--text);
+  font-weight: 400; letter-spacing: -0.01em;
   font-variation-settings: 'opsz' 72, 'SOFT' 30;
   white-space: nowrap;
 }
-.prov-line {
-  flex: 1;
-  height: 0.5px;
-  background: var(--border);
-}
-.prov-count {
-  font-size: 12px;
-  color: var(--text-2);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
+.prov-line { flex: 1; height: 0.5px; background: var(--border); }
+.prov-count { font-size: 12px; color: var(--text-2); font-variant-numeric: tabular-nums; letter-spacing: 0.04em; text-transform: uppercase; }
 
-/* ─────────────── CARDS ─────────────── */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 14px;
-}
+/* ─── CARDS ─── */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; }
 .card {
   background: var(--surface);
   border: 0.5px solid var(--border);
   border-radius: var(--radius-xl);
-  padding: 20px 20px 16px;
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
   transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+  overflow: hidden;
 }
-.card:hover {
-  border-color: var(--border-2);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 32px -16px rgba(48, 36, 24, 0.12);
+.card:hover { border-color: var(--border-2); transform: translateY(-1px); box-shadow: 0 8px 32px -16px rgba(48, 36, 24, 0.12); }
+.card-photo {
+  width: 100%; aspect-ratio: 16 / 9;
+  background: var(--surface-2);
+  background-size: cover; background-position: center;
+  border-bottom: 0.5px solid var(--border);
 }
-.card-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 14px;
-}
+.card-content { padding: 18px 18px 14px; display: flex; flex-direction: column; flex: 1; }
+.card-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
 .card-icon {
-  width: 48px; height: 48px;
-  border-radius: 14px;
+  width: 44px; height: 44px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.card-icon i { font-size: 22px; }
+.card-icon i { font-size: 20px; }
 .card-info { flex: 1; min-width: 0; padding-top: 2px; }
 .card-name {
   font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 6px;
+  font-size: 19px; font-weight: 500;
+  line-height: 1.2; margin-bottom: 6px;
   letter-spacing: -0.01em;
   font-variation-settings: 'opsz' 36, 'SOFT' 30;
 }
-.card-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
+.card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .cat-pill {
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 100px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 10px; font-weight: 600;
+  padding: 3px 10px; border-radius: 100px;
+  letter-spacing: 0.05em; text-transform: uppercase;
 }
 .stars-disp { font-size: 13px; color: var(--star); letter-spacing: 2px; line-height: 1; }
 .card-addr {
-  display: flex;
-  align-items: flex-start;
-  gap: 7px;
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.45;
-  margin-bottom: 12px;
+  display: flex; align-items: flex-start; gap: 7px;
+  font-size: 13px; color: var(--text-2); line-height: 1.45;
+  margin-bottom: 10px;
 }
 .card-addr i { font-size: 14px; flex-shrink: 0; margin-top: 1px; color: var(--text-3); }
 .card-note {
-  font-size: 14px;
-  color: var(--text-2);
-  line-height: 1.55;
-  margin-bottom: 16px;
-  flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 14px; color: var(--text-2); line-height: 1.55;
+  margin-bottom: 14px; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .card-foot {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-top: 14px;
-  border-top: 0.5px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+  padding-top: 12px; border-top: 0.5px solid var(--border);
   margin-top: auto;
 }
 .gmaps-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 7px 12px;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 500;
-  border: 0.5px solid var(--border-2);
-  border-radius: 100px;
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.15s, border-color 0.15s;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 11px;
+  font-family: inherit; font-size: 12px; font-weight: 500;
+  border: 0.5px solid var(--border-2); border-radius: 100px;
+  background: transparent; color: var(--text);
+  cursor: pointer; text-decoration: none;
+  transition: background 0.15s;
 }
-.gmaps-link:hover { background: var(--surface-2); border-color: var(--text-3); }
+.gmaps-link:hover { background: var(--surface-2); }
 .gmaps-link i { font-size: 14px; color: var(--accent); }
 .card-tools { display: flex; gap: 4px; margin-left: auto; }
 .tool-btn {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  background: transparent;
-  border: none;
-  color: var(--text-3);
+  width: 32px; height: 32px; border-radius: 8px;
+  background: transparent; border: none; color: var(--text-3);
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  cursor: pointer; transition: background 0.15s, color 0.15s;
 }
 .tool-btn:hover { background: var(--surface-2); color: var(--text); }
 .tool-btn.del:hover { color: var(--danger); }
 .tool-btn i { font-size: 16px; }
 
-/* ─────────────── EMPTY STATE ─────────────── */
-.empty {
-  padding: 80px 20px;
-  text-align: center;
+/* ─── COMPACT LIST ─── */
+.list { display: flex; flex-direction: column; gap: 4px; }
+.list-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.1s;
 }
+.list-row:hover { border-color: var(--border-2); }
+.list-row:active { transform: scale(0.997); }
+.list-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; background-size: cover; background-position: center;
+  overflow: hidden;
+}
+.list-icon i { font-size: 17px; }
+.list-info { flex: 1; min-width: 0; }
+.list-name { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.list-sub { display: flex; align-items: center; gap: 6px; margin-top: 2px; font-size: 12px; color: var(--text-2); }
+.list-sub .stars-disp { font-size: 11px; letter-spacing: 1.5px; }
+.list-chev { color: var(--text-3); flex-shrink: 0; }
+.list-chev i { font-size: 18px; }
+
+/* Empty */
+.empty { padding: 80px 20px; text-align: center; }
 .empty-icon {
-  width: 72px; height: 72px;
-  border-radius: 50%;
+  width: 72px; height: 72px; border-radius: 50%;
   background: var(--surface-2);
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 20px;
@@ -441,35 +332,28 @@ body {
 .empty-icon i { font-size: 32px; color: var(--text-3); }
 .empty h3 {
   font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 8px;
+  font-size: 24px; font-weight: 400; margin-bottom: 8px;
   font-variation-settings: 'opsz' 36;
 }
 .empty p { color: var(--text-2); font-size: 14px; max-width: 320px; margin: 0 auto; }
 .empty strong { color: var(--text); font-weight: 600; }
 
-/* ─────────────── FAB ─────────────── */
+/* ─── FAB ─── */
 #fab {
-  position: fixed;
-  bottom: 28px;
+  position: fixed; bottom: 28px;
   right: max(28px, calc((100% - 1180px) / 2 + 28px));
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: var(--text);
-  color: var(--bg);
-  border: none;
-  cursor: pointer;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--text); color: var(--bg);
+  border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 6px 24px rgba(48, 36, 24, 0.25);
   z-index: 40;
   transition: transform 0.15s, box-shadow 0.15s;
 }
 #fab:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(48, 36, 24, 0.3); }
-#fab:active { transform: translateY(0); }
 #fab i { font-size: 26px; }
 
-/* ─────────────── MODAL / BOTTOM SHEET ─────────────── */
+/* ─── OVERLAY / SHEETS ─── */
 .overlay {
   position: fixed; inset: 0;
   background: rgba(31, 24, 18, 0.45);
@@ -477,270 +361,346 @@ body {
   -webkit-backdrop-filter: blur(4px);
   z-index: 100;
   display: none;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: flex-end; justify-content: center;
   animation: fadeIn 0.2s ease-out;
 }
 .overlay.on { display: flex; }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .sheet {
   background: var(--surface);
-  width: 100%;
-  max-width: 560px;
-  max-height: 92dvh;
+  width: 100%; max-width: 560px; max-height: 92dvh;
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   padding: 0 24px 36px;
   overflow-y: auto;
   animation: slideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1);
-  scrollbar-width: thin;
 }
 .sheet::-webkit-scrollbar { width: 4px; }
 .sheet::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
-@keyframes slideUp {
-  from { transform: translateY(20%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-.sheet-handle {
-  width: 40px; height: 4px;
-  border-radius: 2px;
-  background: var(--border-2);
-  margin: 14px auto 22px;
-}
+@keyframes slideUp { from { transform: translateY(20%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.sheet-handle { width: 40px; height: 4px; border-radius: 2px; background: var(--border-2); margin: 14px auto 22px; }
 .sheet-title {
   font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 400;
-  margin-bottom: 24px;
-  letter-spacing: -0.01em;
+  font-size: 26px; font-weight: 400;
+  margin-bottom: 24px; letter-spacing: -0.01em;
   font-variation-settings: 'opsz' 36, 'SOFT' 30;
 }
 
 /* Form */
 .fg { margin-bottom: 16px; }
-.fg label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-2);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 7px;
-}
-.fg input,
-.fg select,
-.fg textarea {
-  width: 100%;
-  padding: 13px 15px;
-  font-family: inherit;
-  font-size: 15px;
+.fg label { display: block; font-size: 11px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 7px; }
+.fg label .optional { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-3); margin-left: 4px; }
+.fg .hint { font-size: 11px; color: var(--text-3); margin-top: 6px; line-height: 1.4; }
+.fg .hint a { color: var(--accent); text-decoration: underline; }
+.fg input, .fg select, .fg textarea {
+  width: 100%; padding: 13px 15px;
+  font-family: inherit; font-size: 15px;
   background: var(--surface);
   border: 0.5px solid var(--border-2);
   border-radius: var(--radius);
-  color: var(--text);
-  outline: none;
+  color: var(--text); outline: none;
   transition: border-color 0.15s;
-  -webkit-appearance: none;
-  appearance: none;
+  -webkit-appearance: none; appearance: none;
   height: 48px;
 }
 .fg select {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B5C50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 16px;
+  background-repeat: no-repeat; background-position: right 14px center; background-size: 16px;
   padding-right: 38px;
 }
-.fg textarea {
-  height: auto;
-  min-height: 94px;
-  resize: vertical;
-  font-family: inherit;
-}
-.fg input:focus,
-.fg select:focus,
-.fg textarea:focus {
-  border-color: var(--text);
-}
-.r2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-.stars-input {
-  display: flex;
-  gap: 4px;
-}
+.fg textarea { height: auto; min-height: 94px; resize: vertical; font-family: inherit; }
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--text); }
+.r2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.stars-input { display: flex; gap: 4px; }
 .s-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 32px;
-  padding: 0 4px;
-  color: #DDD3C5;
-  line-height: 1;
+  background: none; border: none; cursor: pointer;
+  font-size: 32px; padding: 0 4px; color: #DDD3C5; line-height: 1;
   transition: color 0.1s, transform 0.15s;
 }
 .s-btn.on { color: var(--star); }
 .s-btn:hover { transform: scale(1.1); }
+.photo-preview {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--surface-2);
+  border-radius: var(--radius); margin-top: 10px;
+  background-size: cover; background-position: center;
+  border: 0.5px solid var(--border);
+  display: none;
+}
+.photo-preview.show { display: block; }
 .save-btn {
-  width: 100%;
-  padding: 16px;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  background: var(--text);
-  color: var(--bg);
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  margin-top: 12px;
-  letter-spacing: 0.02em;
+  width: 100%; padding: 16px;
+  font-family: inherit; font-size: 15px; font-weight: 600;
+  background: var(--text); color: var(--bg);
+  border: none; border-radius: var(--radius);
+  cursor: pointer; margin-top: 12px;
   transition: opacity 0.15s;
 }
 .save-btn:hover { opacity: 0.9; }
-.save-btn:active { opacity: 0.8; }
 
-/* Share sheet */
-.share-card {
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-bottom: 14px;
-  background: var(--bg);
-}
-.share-card h4 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.share-card h4 i { font-size: 17px; color: var(--text-2); }
-.share-card p { font-size: 13px; color: var(--text-2); margin-bottom: 12px; line-height: 1.5; }
-.share-card textarea {
+/* ─── COMBOBOX (Destination Picker) ─── */
+.combo-trigger {
   width: 100%;
-  font-size: 11px;
-  font-family: 'Geist Mono', ui-monospace, monospace;
-  padding: 11px 13px;
-  border: 0.5px solid var(--border-2);
-  border-radius: var(--radius-sm);
+  padding: 13px 15px;
+  font-family: inherit; font-size: 15px;
   background: var(--surface);
-  color: var(--text);
-  resize: vertical;
-  min-height: 90px;
-  max-height: 160px;
-  outline: none;
-  line-height: 1.4;
-}
-.share-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-.share-btn {
-  padding: 9px 16px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 500;
   border: 0.5px solid var(--border-2);
-  border-radius: 100px;
-  background: var(--surface);
+  border-radius: var(--radius);
   color: var(--text);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  height: 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  text-align: left;
+  transition: border-color 0.15s;
+}
+.combo-trigger:hover { border-color: var(--text-2); }
+.combo-trigger.placeholder .combo-value { color: var(--text-3); }
+.combo-trigger > i { font-size: 16px; color: var(--text-2); }
+.combo-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Combo picker sheet */
+.combo-sheet {
+  padding: 0 0 24px;
+  display: flex; flex-direction: column;
+  max-height: 92dvh;
+}
+.combo-search-wrap {
+  position: sticky; top: 0;
+  background: var(--surface);
+  padding: 14px 20px 12px;
+  border-bottom: 0.5px solid var(--border);
+  z-index: 2;
+}
+.combo-search-input {
+  width: 100%; height: 44px;
+  padding: 0 16px 0 42px;
+  background: var(--surface-2);
+  border: 0.5px solid var(--border-2);
+  border-radius: var(--radius);
+  font-family: inherit; font-size: 14px;
+  color: var(--text); outline: none;
+  transition: border-color 0.15s;
+}
+.combo-search-input:focus { border-color: var(--text-2); }
+.combo-search-wrap > i {
+  position: absolute; left: 33px; top: 28px;
+  font-size: 16px; color: var(--text-3);
+  pointer-events: none;
+}
+.combo-search-clear {
+  position: absolute; right: 28px; top: 22px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--border-2); border: none;
+  color: var(--text); cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+}
+.combo-search-clear.show { display: flex; }
+.combo-search-clear i { font-size: 14px; }
+
+.combo-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 12px 0;
+}
+.combo-group { margin-bottom: 12px; }
+.combo-group-title {
+  font-size: 10px; font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 14px 12px 8px;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(to bottom, var(--surface) 70%, transparent);
+}
+.combo-option {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.1s;
+  color: var(--text);
+}
+.combo-option:hover { background: var(--surface-2); }
+.combo-option.selected {
+  background: var(--surface-2);
+  font-weight: 600;
+}
+.combo-option .combo-name { flex: 1; }
+.combo-option .check { color: var(--accent); font-size: 18px; }
+.combo-custom {
+  margin: 12px 12px 0;
+  padding: 14px 16px;
+  border-top: 0.5px dashed var(--border-2);
+  font-size: 14px;
+  color: var(--accent);
+  cursor: pointer;
+  display: flex; align-items: center; gap: 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(184, 85, 42, 0.04);
+}
+.combo-custom:hover { background: rgba(184, 85, 42, 0.08); }
+.combo-custom i { font-size: 18px; flex-shrink: 0; }
+.combo-custom .custom-text { flex: 1; }
+.combo-custom strong { color: var(--text); font-weight: 600; }
+.combo-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+/* Detail view */
+.detail-photo {
+  margin: -24px -24px 20px;
+  width: calc(100% + 48px);
+  aspect-ratio: 16 / 9;
+  background: var(--surface-2);
+  background-size: cover; background-position: center;
+}
+.detail-name {
+  font-family: var(--font-display);
+  font-size: 30px; font-weight: 500;
+  line-height: 1.15; letter-spacing: -0.015em;
+  margin-bottom: 14px;
+  font-variation-settings: 'opsz' 48, 'SOFT' 30;
+}
+.detail-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.detail-prov-pill {
+  font-size: 12px; font-weight: 500;
+  padding: 5px 12px; border-radius: 100px;
+  background: var(--surface-2); color: var(--text);
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.detail-prov-pill i { font-size: 13px; }
+.detail-section { margin-bottom: 18px; }
+.detail-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--text-2); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 6px;
+}
+.detail-text { font-size: 15px; color: var(--text); line-height: 1.6; white-space: pre-wrap; }
+.detail-addr {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 14px; color: var(--text-2); line-height: 1.5;
+}
+.detail-addr i { font-size: 16px; flex-shrink: 0; margin-top: 2px; color: var(--text-3); }
+.detail-actions {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  padding-top: 18px;
+  border-top: 0.5px solid var(--border);
+  margin-top: 18px;
+}
+.detail-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 16px;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  border: 0.5px solid var(--border-2); border-radius: 100px;
+  background: var(--surface); color: var(--text);
+  cursor: pointer; text-decoration: none;
+  transition: background 0.15s;
+}
+.detail-btn:hover { background: var(--surface-2); }
+.detail-btn i { font-size: 16px; }
+.detail-btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.detail-btn.primary:hover { opacity: 0.9; background: var(--text); }
+.detail-btn.danger { color: var(--danger); }
+.detail-btn.danger:hover { background: rgba(184, 58, 42, 0.08); }
+.detail-btn.danger i { color: var(--danger); }
+
+/* Share */
+.share-card { border: 0.5px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 14px; background: var(--bg); }
+.share-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 5px; display: flex; align-items: center; gap: 7px; }
+.share-card h4 i { font-size: 17px; color: var(--text-2); }
+.share-card p { font-size: 13px; color: var(--text-2); margin-bottom: 14px; line-height: 1.5; }
+.share-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.share-btn {
+  padding: 11px 18px;
+  font-family: inherit; font-size: 14px; font-weight: 500;
+  border: 0.5px solid var(--border-2); border-radius: 100px;
+  background: var(--surface); color: var(--text);
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
   transition: background 0.15s;
 }
 .share-btn:hover { background: var(--surface-2); }
-.share-btn i { font-size: 15px; }
+.share-btn i { font-size: 16px; }
+.share-btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.share-btn.primary:hover { opacity: 0.9; background: var(--text); }
+.code-tag { font-size: 12px; background: var(--surface-2); padding: 1px 6px; border-radius: 4px; font-family: 'Geist Mono', ui-monospace, monospace; }
 
-/* ─────────────── TOAST ─────────────── */
+/* Toast */
 #toast {
-  position: fixed;
-  bottom: 32px;
-  left: 50%;
+  position: fixed; bottom: 32px; left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background: var(--text);
-  color: var(--bg);
-  padding: 12px 22px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 200;
-  opacity: 0;
-  pointer-events: none;
+  background: var(--text); color: var(--bg);
+  padding: 12px 22px; border-radius: 100px;
+  font-size: 13px; font-weight: 500;
+  display: flex; align-items: center; gap: 8px;
+  z-index: 200; opacity: 0; pointer-events: none;
   transition: opacity 0.2s, transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
   box-shadow: 0 8px 32px rgba(48, 36, 24, 0.2);
-  white-space: nowrap;
   max-width: calc(100% - 32px);
 }
-#toast.on {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
+#toast.on { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
 #toast i { font-size: 16px; }
 
-/* ─────────────── RESPONSIVE: MOBILE ─────────────── */
+/* MOBILE */
 @media (max-width: 700px) {
   :root { --sp: 16px; }
-  #app { padding: 0 16px; padding-bottom: 100px; }
-  .hero { padding: 28px 0 20px; margin-bottom: 18px; }
-  .hero-row { margin-bottom: 18px; }
+  #app { padding: 0 16px 100px; }
+  .hero { padding: 24px 0 18px; margin-bottom: 16px; }
+  .hero-row { margin-bottom: 16px; }
   .hero-title { font-size: 38px; }
-  .hero-sub { font-size: 14px; margin-top: 8px; }
+  .hero-sub { font-size: 13px; margin-top: 6px; }
   .icon-btn { width: 40px; height: 40px; }
-  #search { height: 50px; font-size: 14px; }
+  #search { height: 50px; font-size: 14px; padding: 0 46px 0 46px; }
   .search-wrap > i.ti-search { left: 18px; font-size: 17px; }
-  #search { padding: 0 46px 0 46px; }
-  .filters-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .filters-row { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 6px; }
   .prov-filter { width: 100%; }
   .prov-filter select { width: 100%; padding: 10px 32px 10px 16px; }
-  .stats-line { padding: 14px 0 18px; font-size: 12px; }
+  .stats-line { padding: 12px 0 14px; font-size: 12px; }
+  .view-toggle { margin-left: auto; }
   .cards { grid-template-columns: 1fr; gap: 10px; }
-  .card { padding: 16px 16px 14px; border-radius: var(--radius-lg); }
-  .card-name { font-size: 18px; }
+  .card-content { padding: 14px 14px 12px; }
+  .card-name { font-size: 17px; }
   .prov-name { font-size: 22px; }
-  .prov-block { margin-bottom: 32px; }
-  .prov-header { gap: 12px; margin-bottom: 14px; }
+  .prov-block { margin-bottom: 24px; }
+  .prov-header { gap: 12px; margin-bottom: 12px; }
   #fab { right: 20px; bottom: 22px; width: 54px; height: 54px; }
   #fab i { font-size: 23px; }
   .sheet { padding: 0 20px 32px; }
   .sheet-title { font-size: 22px; margin-bottom: 18px; }
   .fg label { font-size: 10px; }
-  .fg input, .fg select, .fg textarea { padding: 12px 14px; font-size: 16px; }
+  .fg input, .fg select, .fg textarea, .combo-trigger { padding: 12px 14px; font-size: 16px; }
+  .detail-photo { margin: -20px -20px 18px; width: calc(100% + 40px); }
+  .detail-name { font-size: 25px; }
+  .combo-search-wrap { padding: 12px 16px 10px; }
+  .combo-search-wrap > i { left: 28px; top: 26px; }
+  .combo-search-clear { right: 24px; top: 20px; }
 }
 
-/* ─────────────── DESKTOP MODAL CENTER ─────────────── */
 @media (min-width: 701px) {
   .overlay { align-items: center; padding: 24px; }
   .sheet {
     border-radius: var(--radius-xl);
-    max-height: 88vh;
-    width: 560px;
+    max-height: 88vh; width: 560px;
     animation: zoomIn 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+    padding: 28px 28px 32px;
   }
-  @keyframes zoomIn {
-    from { transform: scale(0.96); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
+  @keyframes zoomIn { from { transform: scale(0.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
   .sheet-handle { display: none; }
-  .sheet { padding: 28px 28px 32px; }
+  .detail-photo { border-radius: var(--radius-xl) var(--radius-xl) 0 0; margin: -28px -28px 22px; width: calc(100% + 56px); }
+  /* Combo sheet special on desktop */
+  .combo-sheet { padding: 0 0 20px; max-height: 88vh; }
+  .combo-search-wrap { padding: 18px 24px 14px; }
+  .combo-search-wrap > i { left: 36px; top: 32px; }
+  .combo-search-clear { right: 30px; top: 26px; }
 }
-
-/* ─────────────── DARK MODE (auto, optional) ─────────────── */
-/* @media (prefers-color-scheme: dark) { ... } */
 </style>
 </head>
 <body>
 <div id="app">
 
-  <!-- ─── HERO ─── -->
   <header class="hero">
     <div class="hero-row">
       <div class="hero-title-wrap">
@@ -752,7 +712,7 @@ body {
           <span class="sync-dot"></span>
           <span id="sync-label">Đang tải...</span>
         </span>
-        <button class="icon-btn" onclick="openShare()" aria-label="Xuất / Nhập dữ liệu">
+        <button class="icon-btn" onclick="openShare()" aria-label="Sao lưu / Khôi phục">
           <i class="ti ti-share"></i>
         </button>
       </div>
@@ -760,14 +720,14 @@ body {
 
     <div class="search-wrap">
       <i class="ti ti-search"></i>
-      <input id="search" type="search" placeholder="Tìm quán ăn, điểm tham quan, tỉnh thành..." oninput="doFilter()" autocomplete="off">
+      <input id="search" type="search" placeholder="Tìm quán ăn, điểm tham quan, địa danh..." oninput="doFilter()" autocomplete="off">
       <button class="clear-search" id="clear-btn" onclick="clearSearch()" aria-label="Xóa tìm kiếm"><i class="ti ti-x"></i></button>
     </div>
 
     <div class="filters-row">
       <div class="prov-filter">
-        <select id="fprov" onchange="doFilter()" aria-label="Lọc theo tỉnh thành">
-          <option value="">Mọi tỉnh thành</option>
+        <select id="fprov" onchange="doFilter()" aria-label="Lọc theo địa danh">
+          <option value="">Mọi địa danh</option>
         </select>
       </div>
       <div class="cat-tabs" id="cat-tabs">
@@ -776,37 +736,34 @@ body {
     </div>
   </header>
 
-  <!-- Stats -->
   <div class="stats-line">
     <span><strong id="stat-locs">0</strong> địa điểm</span>
     <span class="stats-divider"></span>
-    <span><strong id="stat-provs">0</strong> tỉnh thành đã lưu</span>
-  </div>
-
-  <!-- Firebase setup hint (chỉ hiện khi chưa có Firebase) -->
-  <div id="fb-hint" class="fb-hint" style="display: none">
-    <i class="ti ti-cloud-off"></i>
-    <div class="fb-hint-body">
-      <div class="fb-hint-title">Chưa kết nối Firebase — đang dùng bộ nhớ máy</div>
-      <p>Dữ liệu hiện đang lưu trong trình duyệt của thiết bị này. Để đồng bộ giữa máy tính và điện thoại, hãy <a href="#setup" onclick="document.getElementById('fb-hint').style.display='none';return false;">cấu hình Firebase</a> theo file README.</p>
+    <span><strong id="stat-provs">0</strong> địa danh</span>
+    <div class="view-toggle" role="tablist" aria-label="Chế độ xem">
+      <button class="vt-btn" data-view="cards" onclick="setView('cards')" aria-label="Xem dạng thẻ"><i class="ti ti-layout-grid"></i><span>Thẻ</span></button>
+      <button class="vt-btn" data-view="list" onclick="setView('list')" aria-label="Xem dạng danh sách"><i class="ti ti-list"></i><span>Gọn</span></button>
     </div>
   </div>
 
-  <!-- Content -->
+  <div id="fb-hint" class="fb-hint" style="display: none">
+    <i class="ti ti-cloud-off"></i>
+    <div>
+      <div class="fb-hint-title">Chưa kết nối Firebase — đang dùng bộ nhớ máy</div>
+      <p>Để đồng bộ giữa các thiết bị, cấu hình Firebase theo README.</p>
+    </div>
+  </div>
+
   <main id="content"></main>
 
-  <!-- FAB -->
-  <button id="fab" onclick="openEdit()" aria-label="Thêm địa điểm mới">
-    <i class="ti ti-plus"></i>
-  </button>
+  <button id="fab" onclick="openEdit()" aria-label="Thêm địa điểm mới"><i class="ti ti-plus"></i></button>
 
-  <!-- Toast -->
   <div id="toast" role="status" aria-live="polite">
     <i class="ti ti-check"></i>
     <span id="toast-msg"></span>
   </div>
 
-  <!-- ─── ADD/EDIT SHEET ─── -->
+  <!-- ADD/EDIT SHEET -->
   <div class="overlay" id="edit-overlay">
     <div class="sheet">
       <div class="sheet-handle"></div>
@@ -817,8 +774,11 @@ body {
       </div>
       <div class="r2">
         <div class="fg" style="margin: 0;">
-          <label>Tỉnh thành</label>
-          <select id="f-prov"><option value="">— Chọn —</option></select>
+          <label>Địa danh</label>
+          <button type="button" class="combo-trigger placeholder" id="f-prov-trigger" data-value="" onclick="openCombo('f-prov-trigger')">
+            <span class="combo-value">— Chọn —</span>
+            <i class="ti ti-chevron-down"></i>
+          </button>
         </div>
         <div class="fg" style="margin: 0;">
           <label>Loại hình</label>
@@ -828,6 +788,12 @@ body {
       <div class="fg">
         <label>Địa chỉ</label>
         <input id="f-addr" type="text" placeholder="Số nhà, đường, phường/quận...">
+      </div>
+      <div class="fg">
+        <label>URL ảnh đại diện <span class="optional">(tùy chọn)</span></label>
+        <input id="f-photo" type="url" placeholder="https://..." oninput="updatePhotoPreview()">
+        <div class="photo-preview" id="photo-preview"></div>
+        <div class="hint">Dùng <a href="https://imgur.com/upload" target="_blank">Imgur</a> (kéo thả ảnh → chuột phải vào ảnh → Copy image address) hoặc URL ảnh trực tiếp.</div>
       </div>
       <div class="fg">
         <label>Ghi chú / Kinh nghiệm</label>
@@ -847,44 +813,58 @@ body {
     </div>
   </div>
 
-  <!-- ─── SHARE SHEET ─── -->
+  <!-- DESTINATION PICKER SHEET -->
+  <div class="overlay" id="combo-overlay">
+    <div class="sheet combo-sheet">
+      <div class="sheet-handle"></div>
+      <div class="combo-search-wrap">
+        <i class="ti ti-search"></i>
+        <input class="combo-search-input" id="combo-search" type="search" placeholder="Gõ để tìm nhanh..." oninput="filterCombo()" autocomplete="off">
+        <button class="combo-search-clear" id="combo-search-clear" onclick="clearComboSearch()"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="combo-list" id="combo-list"></div>
+    </div>
+  </div>
+
+  <!-- DETAIL VIEW -->
+  <div class="overlay" id="detail-overlay">
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+
+  <!-- BACKUP / RESTORE -->
   <div class="overlay" id="share-overlay">
     <div class="sheet">
       <div class="sheet-handle"></div>
-      <h2 class="sheet-title">Xuất / Nhập dữ liệu</h2>
+      <h2 class="sheet-title">Sao lưu / Khôi phục</h2>
       <div class="share-card">
-        <h4><i class="ti ti-download"></i> Xuất để chia sẻ hoặc backup</h4>
-        <p>Sao chép JSON và lưu vào nơi an toàn (Google Drive, Notion...) hoặc gửi cho bạn bè.</p>
-        <textarea id="export-data" readonly></textarea>
+        <h4><i class="ti ti-download"></i> Tải file backup</h4>
+        <p>Lưu toàn bộ địa điểm thành file <span class="code-tag">.json</span> để backup hoặc gửi cho bạn bè. File tự đặt tên kèm ngày tháng.</p>
         <div class="share-actions">
-          <button class="share-btn" onclick="doCopyExport()"><i class="ti ti-copy"></i> Sao chép</button>
+          <button class="share-btn primary" onclick="exportFile()"><i class="ti ti-download"></i> Tải file backup</button>
         </div>
       </div>
       <div class="share-card">
-        <h4><i class="ti ti-upload"></i> Nhập từ backup hoặc bạn bè</h4>
-        <p>Dán JSON vào ô bên dưới, chọn cách nhập.</p>
-        <textarea id="import-data" placeholder="Dán JSON vào đây..."></textarea>
+        <h4><i class="ti ti-upload"></i> Nhập từ file backup</h4>
+        <p>Chọn file <span class="code-tag">.json</span> đã backup hoặc nhận từ người khác. <strong>Gộp</strong> sẽ thêm địa điểm mới (bỏ qua trùng tên). <strong>Thay thế</strong> sẽ xóa hết hiện tại.</p>
         <div class="share-actions">
-          <button class="share-btn" onclick="doImportMerge()"><i class="ti ti-git-merge"></i> Gộp vào</button>
-          <button class="share-btn" onclick="doImportReplace()"><i class="ti ti-replace"></i> Thay thế hết</button>
+          <button class="share-btn" onclick="pickImport('merge')"><i class="ti ti-git-merge"></i> Chọn file để gộp</button>
+          <button class="share-btn" onclick="pickImport('replace')"><i class="ti ti-replace"></i> Chọn file để thay thế</button>
         </div>
+        <input type="file" id="import-file" accept=".json,application/json" style="display: none;">
       </div>
     </div>
   </div>
 
 </div>
 
-<!-- ═══════════════════════ FIREBASE MODULE ═══════════════════════ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import {
-  getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ════════════════════════════════════════════════════════════════
-//  PASTE YOUR FIREBASE CONFIG HERE
-//  Lấy từ: Firebase Console → Project Settings → Your apps → Web app
-// ════════════════════════════════════════════════════════════════
 const firebaseConfig = {
   apiKey: "AIzaSyBibMNDkMUdsaa5nqBpAM7X6Wxj3SXSHyA",
   authDomain: "camnang-dulich.firebaseapp.com",
@@ -893,27 +873,40 @@ const firebaseConfig = {
   messagingSenderId: "631798861431",
   appId: "1:631798861431:web:df25522a0de3af5e4d0072"
 };
-// ════════════════════════════════════════════════════════════════
 
 let useFirebase = firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY";
-
 if (useFirebase) {
   try {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     window.firebase = { db, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy };
-  } catch (e) {
-    console.error("Firebase init failed:", e);
-    useFirebase = false;
-  }
+  } catch (e) { console.error("Firebase init failed:", e); useFirebase = false; }
 }
 window.useFirebase = useFirebase;
 window.dispatchEvent(new CustomEvent("app-ready"));
 </script>
 
-<!-- ═══════════════════════ APP LOGIC ═══════════════════════ -->
 <script>
-const PROVS = ['Hà Nội','TP. Hồ Chí Minh','Đà Nẵng','Hội An','Huế','Nha Trang','Đà Lạt','Phú Quốc','Hạ Long','Sapa','Ninh Bình','Hải Phòng','Cần Thơ','Vũng Tàu','Phan Thiết','Quy Nhơn','Hà Giang','Lào Cai','Buôn Ma Thuột','Mộc Châu','Quảng Ngãi','Đồng Hới','Đông Hà','Vinh','Khác'];
+// ─── DESTINATIONS (Travel-friendly, grouped by region) ───
+const DESTINATIONS = {
+  'Miền Bắc': [
+    'Ba Bể', 'Bình Liêu', 'Cát Bà', 'Cô Tô', 'Điện Biên', 'Hà Giang',
+    'Hà Nội', 'Hải Phòng', 'Hạ Long', 'Lạng Sơn', 'Mai Châu',
+    'Mộc Châu', 'Ninh Bình', 'Sapa', 'Tà Xùa', 'Y Tý'
+  ],
+  'Miền Trung & Tây Nguyên': [
+    'Bảo Lộc', 'Buôn Ma Thuột', 'Cam Ranh', 'Cửa Lò', 'Đà Lạt', 'Đà Nẵng',
+    'Hà Tĩnh', 'Hội An', 'Huế', 'Kon Tum', 'Lý Sơn', 'Măng Đen',
+    'Mũi Né', 'Nha Trang', 'Phan Rang', 'Phan Thiết', 'Phong Nha',
+    'Phú Yên', 'Pleiku', 'Pù Luông', 'Quảng Bình', 'Quảng Ngãi',
+    'Quảng Trị', 'Quy Nhơn', 'Sầm Sơn', 'Thanh Hóa', 'Vinh'
+  ],
+  'Miền Nam': [
+    'Bạc Liêu', 'Bến Tre', 'Cà Mau', 'Cần Thơ', 'Châu Đốc',
+    'Côn Đảo', 'Hà Tiên', 'Mỹ Tho', 'Phú Quốc', 'Sa Đéc',
+    'Tây Ninh', 'TP. Hồ Chí Minh', 'Vũng Tàu'
+  ]
+};
 
 const CATS = [
   { id: 'food',      label: 'Ăn uống',     icon: 'ti-soup',          bg: '#FAEDD2', col: '#92580A', pillBg: '#FAEDD2', pillColor: '#5C3A05' },
@@ -927,45 +920,33 @@ const CATS = [
 ];
 const CM = Object.fromEntries(CATS.map(c => [c.id, c]));
 
-const SAMPLES = [
-  { id: 's1',  name: 'Bún chả Hương Liên',  province: 'Hà Nội',           category: 'food',   address: '24 Lê Văn Hưu, Hai Bà Trưng',   description: 'Chả nướng đậm vị, nên gọi thêm nem cua bể. Obama từng ghé.', rating: 5 },
-  { id: 's2',  name: 'Cộng Cà Phê',         province: 'Hà Nội',           category: 'cafe',   address: '152 Triệu Việt Vương',           description: 'Phong cách hoài cổ Việt Nam. Cà phê cốt dừa là món signature.', rating: 4 },
-  { id: 's3',  name: 'Hồ Hoàn Kiếm',         province: 'Hà Nội',           category: 'sight',  address: 'Đinh Tiên Hoàng, Hoàn Kiếm',     description: 'Đẹp nhất lúc sáng sớm. Cuối tuần phố đi bộ rất sôi động.', rating: 5 },
-  { id: 's4',  name: 'Mì Quảng Bà Vị',      province: 'Đà Nẵng',          category: 'food',   address: '166 Lê Đình Dương',              description: 'Chuẩn vị miền Trung, nước nhất đậm đà. Nên ăn sáng hoặc trưa.', rating: 5 },
-  { id: 's5',  name: 'Phố cổ Hội An',        province: 'Hội An',           category: 'sight',  address: 'Phố cổ Hội An, Quảng Nam',       description: 'Di sản UNESCO. Đẹp nhất ban đêm khi thắp đèn lồng rực rỡ.', rating: 5 },
-  { id: 's6',  name: 'La Viet Coffee',      province: 'Đà Lạt',           category: 'cafe',   address: '200 Nguyễn Công Trứ',            description: 'Specialty coffee nổi tiếng nhất Đà Lạt. View đẹp, cuối tuần nên đặt trước.', rating: 5 },
-  { id: 's7',  name: 'Bánh Mì Phượng',      province: 'Hội An',           category: 'food',   address: '2B Phan Chu Trinh',              description: 'Anthony Bourdain ca ngợi. Đến sớm tránh xếp hàng dài cả phố.', rating: 5 },
-  { id: 's8',  name: 'Bãi Sao',             province: 'Phú Quốc',         category: 'nature', address: 'An Thới, Phú Quốc',              description: 'Bãi biển đẹp nhất Phú Quốc. Cát trắng mịn, nước trong xanh.', rating: 5 },
-  { id: 's9',  name: 'Vịnh Hạ Long',         province: 'Hạ Long',          category: 'nature', address: 'Hạ Long, Quảng Ninh',            description: 'Di sản thiên nhiên thế giới. Nên đặt tour ngủ thuyền 2 ngày 1 đêm.', rating: 5 },
-  { id: 's10', name: 'Nhà thờ Đức Bà',       province: 'TP. Hồ Chí Minh',  category: 'sight',  address: '1 Công xã Paris, Quận 1',        description: 'Kiến trúc Gothic nổi bật. Khu xung quanh nhiều quán cà phê đẹp.', rating: 4 },
-];
-
 const STORAGE_KEY = 'camnang-du-lich-v1';
 const FB_COLLECTION = 'locations';
+const COLLAPSE_KEY = 'camnang-collapsed-provs';
+const VIEW_KEY = 'camnang-view-mode';
 
 let locs = [];
 let editId = null;
 let rating = 0;
 let flt = { prov: '', cat: '', q: '' };
+let collapsed = new Set(JSON.parse(localStorage.getItem(COLLAPSE_KEY) || '[]'));
+let viewMode = localStorage.getItem(VIEW_KEY) || (window.matchMedia('(max-width: 700px)').matches ? 'list' : 'cards');
+let pendingImportMode = null;
+let comboTargetId = null;
 
 window.addEventListener('app-ready', init);
 
 async function init() {
   buildUI();
+  applyViewMode();
 
   if (window.useFirebase) {
     setSyncStatus('online', 'Đang đồng bộ');
     const { db, collection, onSnapshot } = window.firebase;
-    // Real-time listener — tự động cập nhật khi data thay đổi
     onSnapshot(collection(db, FB_COLLECTION), (snap) => {
       locs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      // Nếu collection trống lần đầu, seed bằng samples
-      if (locs.length === 0) {
-        seedFirebase();
-      } else {
-        render();
-        setSyncStatus('online', 'Đã đồng bộ');
-      }
+      render();
+      setSyncStatus('online', 'Đã đồng bộ');
     }, (err) => {
       console.error('Firestore error:', err);
       setSyncStatus('offline', 'Lỗi đồng bộ');
@@ -980,22 +961,10 @@ async function init() {
 
 function loadFromLocal() {
   const raw = localStorage.getItem(STORAGE_KEY);
-  locs = raw ? JSON.parse(raw) : [...SAMPLES];
-  if (!raw) saveLocal();
+  locs = raw ? JSON.parse(raw) : [];
   render();
 }
-
-function saveLocal() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(locs));
-}
-
-async function seedFirebase() {
-  const { db, collection, addDoc } = window.firebase;
-  for (const s of SAMPLES) {
-    const { id, ...data } = s;
-    await addDoc(collection(db, FB_COLLECTION), data);
-  }
-}
+function saveLocal() { localStorage.setItem(STORAGE_KEY, JSON.stringify(locs)); }
 
 function setSyncStatus(state, label) {
   const pill = document.getElementById('sync-status');
@@ -1005,11 +974,6 @@ function setSyncStatus(state, label) {
 }
 
 function buildUI() {
-  const fp = document.getElementById('f-prov'), fprov = document.getElementById('fprov');
-  PROVS.forEach(p => {
-    fp.insertAdjacentHTML('beforeend', `<option value="${p}">${p}</option>`);
-    fprov.insertAdjacentHTML('beforeend', `<option value="${p}">${p}</option>`);
-  });
   const fc = document.getElementById('f-cat');
   CATS.forEach(c => fc.insertAdjacentHTML('beforeend', `<option value="${c.id}">${c.label}</option>`));
   const tabs = document.getElementById('cat-tabs');
@@ -1019,6 +983,123 @@ function buildUI() {
   document.querySelectorAll('.s-btn').forEach(b => {
     b.addEventListener('click', () => { rating = parseInt(b.dataset.v); updStars(); });
   });
+  document.getElementById('import-file').addEventListener('change', handleFileImport);
+}
+
+function applyViewMode() {
+  document.querySelectorAll('.vt-btn').forEach(b => b.classList.toggle('on', b.dataset.view === viewMode));
+}
+function setView(mode) {
+  viewMode = mode;
+  localStorage.setItem(VIEW_KEY, mode);
+  applyViewMode();
+  render();
+}
+
+// ─── COMBOBOX (Destination Picker) ───
+function openCombo(triggerId) {
+  comboTargetId = triggerId;
+  document.getElementById('combo-search').value = '';
+  document.getElementById('combo-search-clear').classList.remove('show');
+  renderComboList('');
+  document.getElementById('combo-overlay').classList.add('on');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('combo-search').focus(), 200);
+}
+function closeCombo() {
+  document.getElementById('combo-overlay').classList.remove('on');
+  // Don't reset body overflow if another sheet is still open
+  if (!document.getElementById('edit-overlay').classList.contains('on') &&
+      !document.getElementById('detail-overlay').classList.contains('on') &&
+      !document.getElementById('share-overlay').classList.contains('on')) {
+    document.body.style.overflow = '';
+  }
+}
+function normalize(s) {
+  return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
+}
+
+function renderComboList(query) {
+  const q = (query || '').trim();
+  const qn = normalize(q);
+  const currentValue = comboTargetId ? document.getElementById(comboTargetId).dataset.value || '' : '';
+
+  let html = '';
+  let totalMatches = 0;
+  let hasExactMatch = false;
+
+  for (const [region, dests] of Object.entries(DESTINATIONS)) {
+    const matches = dests.filter(d => !qn || normalize(d).includes(qn));
+    if (matches.length === 0) continue;
+
+    html += `<div class="combo-group">
+      <div class="combo-group-title">${region}</div>
+      ${matches.map(d => {
+        if (normalize(d) === qn) hasExactMatch = true;
+        const isSelected = d === currentValue;
+        return `<div class="combo-option ${isSelected ? 'selected' : ''}" onclick="selectCombo(${JSON.stringify(d).replace(/"/g, '&quot;')})">
+          <span class="combo-name">${escapeHTML(d)}</span>
+          ${isSelected ? '<i class="ti ti-check check"></i>' : ''}
+        </div>`;
+      }).join('')}
+    </div>`;
+    totalMatches += matches.length;
+  }
+
+  if (q && !hasExactMatch) {
+    html += `<div class="combo-custom" onclick="selectCombo(${JSON.stringify(q).replace(/"/g, '&quot;')})">
+      <i class="ti ti-plus"></i>
+      <span class="custom-text">Dùng <strong>"${escapeHTML(q)}"</strong> làm địa danh tùy chỉnh</span>
+    </div>`;
+  }
+
+  if (totalMatches === 0 && !q) {
+    html = '<div class="combo-empty">Không có địa danh nào</div>';
+  } else if (totalMatches === 0 && q && hasExactMatch === false) {
+    // Already handled above with combo-custom
+  }
+
+  document.getElementById('combo-list').innerHTML = html;
+}
+
+function filterCombo() {
+  const q = document.getElementById('combo-search').value;
+  document.getElementById('combo-search-clear').classList.toggle('show', !!q);
+  renderComboList(q);
+}
+function clearComboSearch() {
+  document.getElementById('combo-search').value = '';
+  document.getElementById('combo-search-clear').classList.remove('show');
+  renderComboList('');
+  document.getElementById('combo-search').focus();
+}
+function selectCombo(value) {
+  if (!comboTargetId) return;
+  const trigger = document.getElementById(comboTargetId);
+  trigger.dataset.value = value;
+  trigger.querySelector('.combo-value').textContent = value || '— Chọn —';
+  trigger.classList.toggle('placeholder', !value);
+  closeCombo();
+}
+
+function getComboValue(triggerId) {
+  return document.getElementById(triggerId).dataset.value || '';
+}
+function setComboValue(triggerId, value) {
+  const trigger = document.getElementById(triggerId);
+  trigger.dataset.value = value || '';
+  trigger.querySelector('.combo-value').textContent = value || '— Chọn —';
+  trigger.classList.toggle('placeholder', !value);
+}
+
+// ─── FILTER ─── 
+function buildProvinceFilter() {
+  // Dynamic: only show destinations that exist in user's data
+  const sel = document.getElementById('fprov');
+  const current = sel.value;
+  const provs = [...new Set(locs.map(l => l.province).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'vi'));
+  sel.innerHTML = '<option value="">Mọi địa danh</option>' + provs.map(p => `<option value="${escapeAttr(p)}">${escapeHTML(p)}</option>`).join('');
+  if (current && provs.includes(current)) sel.value = current;
 }
 
 function filtered() {
@@ -1035,31 +1116,36 @@ function filtered() {
 }
 
 function render() {
+  buildProvinceFilter();
   const f = filtered();
-  // Sort within each province by rating desc, then name
   f.sort((a, b) => (b.rating || 0) - (a.rating || 0) || a.name.localeCompare(b.name, 'vi'));
   const byProv = {};
   f.forEach(l => { if (!byProv[l.province]) byProv[l.province] = []; byProv[l.province].push(l); });
-  // Sort provinces by count desc, then alphabetically
   const provs = Object.keys(byProv).sort((a, b) => byProv[b].length - byProv[a].length || a.localeCompare(b, 'vi'));
   const el = document.getElementById('content');
+
   if (!f.length) {
     el.innerHTML = `
       <div class="empty">
         <div class="empty-icon"><i class="ti ti-map-off"></i></div>
-        <h3>Chưa có địa điểm nào</h3>
-        <p>Nhấn nút <strong>+</strong> ở góc dưới để thêm địa điểm đầu tiên vào cẩm nang của bạn.</p>
+        <h3>${locs.length ? 'Không tìm thấy địa điểm phù hợp' : 'Chưa có địa điểm nào'}</h3>
+        <p>${locs.length ? 'Thử xóa bộ lọc hoặc tìm kiếm khác.' : 'Nhấn nút <strong>+</strong> ở góc dưới để thêm địa điểm đầu tiên.'}</p>
       </div>`;
   } else {
     el.innerHTML = provs.map(prov => {
       const items = byProv[prov];
-      return `<section class="prov-block">
-        <header class="prov-header">
-          <h2 class="prov-name">${escapeHTML(prov)}</h2>
+      const isCollapsed = collapsed.has(prov);
+      const itemsHTML = viewMode === 'cards' ? items.map(cardHTML).join('') : items.map(listRowHTML).join('');
+      const wrap = viewMode === 'cards' ? 'cards' : 'list';
+      const safeProv = escapeHTML(prov);
+      return `<section class="prov-block ${isCollapsed ? 'collapsed' : ''}" data-prov="${safeProv}">
+        <header class="prov-header" onclick="toggleProv(this)">
+          <i class="ti ti-chevron-down prov-chevron"></i>
+          <h2 class="prov-name">${safeProv}</h2>
           <span class="prov-line"></span>
           <span class="prov-count">${items.length} địa điểm</span>
         </header>
-        <div class="cards">${items.map(cardHTML).join('')}</div>
+        <div class="${wrap}">${itemsHTML}</div>
       </section>`;
     }).join('');
   }
@@ -1071,36 +1157,65 @@ function cardHTML(l) {
   const c = CM[l.category] || { icon: 'ti-map-pin', bg: '#F0EBE2', col: '#6B5C50', label: 'Khác', pillBg: '#F0EBE2', pillColor: '#1F1812' };
   const stars = l.rating ? '★'.repeat(l.rating) : '';
   const mapsQ = encodeURIComponent((l.name + (l.address ? ', ' + l.address : '') + ', Việt Nam'));
+  const photoUrl = (l.photoUrl || '').trim();
+  const photo = photoUrl ? `<div class="card-photo" style="background-image: url('${escapeUrl(photoUrl)}')"></div>` : '';
   return `
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon" style="background: ${c.bg}">
-          <i class="ti ${c.icon}" style="color: ${c.col}"></i>
-        </div>
-        <div class="card-info">
-          <h3 class="card-name">${escapeHTML(l.name)}</h3>
-          <div class="card-meta">
-            <span class="cat-pill" style="background: ${c.pillBg}; color: ${c.pillColor}">${c.label}</span>
-            ${stars ? `<span class="stars-disp">${stars}</span>` : ''}
+    <article class="card" onclick="openDetail('${l.id}')">
+      ${photo}
+      <div class="card-content">
+        <div class="card-head">
+          <div class="card-icon" style="background: ${c.bg}">
+            <i class="ti ${c.icon}" style="color: ${c.col}"></i>
+          </div>
+          <div class="card-info">
+            <h3 class="card-name">${escapeHTML(l.name)}</h3>
+            <div class="card-meta">
+              <span class="cat-pill" style="background: ${c.pillBg}; color: ${c.pillColor}">${c.label}</span>
+              ${stars ? `<span class="stars-disp">${stars}</span>` : ''}
+            </div>
           </div>
         </div>
-      </div>
-      ${l.address ? `<div class="card-addr"><i class="ti ti-map-pin"></i><span>${escapeHTML(l.address)}</span></div>` : ''}
-      ${l.description ? `<p class="card-note">${escapeHTML(l.description)}</p>` : ''}
-      <div class="card-foot">
-        <a class="gmaps-link" href="https://www.google.com/maps/search/?api=1&query=${mapsQ}" target="_blank" rel="noopener">
-          <i class="ti ti-brand-google-maps"></i> Google Maps
-        </a>
-        <div class="card-tools">
-          <button class="tool-btn" onclick="openEdit('${l.id}')" aria-label="Sửa"><i class="ti ti-pencil"></i></button>
-          <button class="tool-btn del" onclick="doDelete('${l.id}')" aria-label="Xóa"><i class="ti ti-trash"></i></button>
+        ${l.address ? `<div class="card-addr"><i class="ti ti-map-pin"></i><span>${escapeHTML(l.address)}</span></div>` : ''}
+        ${l.description ? `<p class="card-note">${escapeHTML(l.description)}</p>` : ''}
+        <div class="card-foot" onclick="event.stopPropagation()">
+          <a class="gmaps-link" href="https://www.google.com/maps/search/?api=1&query=${mapsQ}" target="_blank" rel="noopener">
+            <i class="ti ti-brand-google-maps"></i> Google Maps
+          </a>
+          <div class="card-tools">
+            <button class="tool-btn" onclick="openEdit('${l.id}')" aria-label="Sửa"><i class="ti ti-pencil"></i></button>
+            <button class="tool-btn del" onclick="doDelete('${l.id}')" aria-label="Xóa"><i class="ti ti-trash"></i></button>
+          </div>
         </div>
       </div>
     </article>`;
 }
 
+function listRowHTML(l) {
+  const c = CM[l.category] || { icon: 'ti-map-pin', bg: '#F0EBE2', col: '#6B5C50', label: 'Khác' };
+  const stars = l.rating ? '★'.repeat(l.rating) : '';
+  const photoUrl = (l.photoUrl || '').trim();
+  const iconStyle = photoUrl ? `background-image: url('${escapeUrl(photoUrl)}')` : `background: ${c.bg}`;
+  const iconContent = photoUrl ? '' : `<i class="ti ${c.icon}" style="color: ${c.col}"></i>`;
+  return `
+    <div class="list-row" onclick="openDetail('${l.id}')">
+      <div class="list-icon" style="${iconStyle}">${iconContent}</div>
+      <div class="list-info">
+        <div class="list-name">${escapeHTML(l.name)}</div>
+        <div class="list-sub">
+          <span>${c.label}</span>
+          ${stars ? `<span>·</span><span class="stars-disp">${stars}</span>` : ''}
+        </div>
+      </div>
+      <span class="list-chev"><i class="ti ti-chevron-right"></i></span>
+    </div>`;
+}
+
 function escapeHTML(s) {
-  return String(s || '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  return String(s || '').replace(/[&<>"']/g, ch => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[ch]));
+}
+function escapeAttr(s) { return escapeHTML(s); }
+function escapeUrl(s) {
+  return String(s || '').replace(/'/g, "%27").replace(/\\/g, "%5C");
 }
 
 function doFilter() {
@@ -1109,14 +1224,12 @@ function doFilter() {
   document.getElementById('clear-btn').classList.toggle('show', !!flt.q);
   render();
 }
-
 function clearSearch() {
   document.getElementById('search').value = '';
   flt.q = '';
   document.getElementById('clear-btn').classList.remove('show');
   render();
 }
-
 function setCat(el, cat) {
   document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('on'));
   el.classList.add('on');
@@ -1124,6 +1237,61 @@ function setCat(el, cat) {
   render();
 }
 
+function toggleProv(headerEl) {
+  const block = headerEl.closest('.prov-block');
+  const prov = block.dataset.prov;
+  if (collapsed.has(prov)) collapsed.delete(prov);
+  else collapsed.add(prov);
+  localStorage.setItem(COLLAPSE_KEY, JSON.stringify([...collapsed]));
+  block.classList.toggle('collapsed');
+}
+
+// DETAIL
+function openDetail(id) {
+  const l = locs.find(x => x.id === id);
+  if (!l) return;
+  const c = CM[l.category] || { icon: 'ti-map-pin', bg: '#F0EBE2', col: '#6B5C50', label: 'Khác', pillBg: '#F0EBE2', pillColor: '#1F1812' };
+  const stars = l.rating ? '★'.repeat(l.rating) : '';
+  const emptyStars = l.rating ? '☆'.repeat(5 - l.rating) : '';
+  const mapsQ = encodeURIComponent((l.name + (l.address ? ', ' + l.address : '') + ', Việt Nam'));
+  const photoUrl = (l.photoUrl || '').trim();
+  const photo = photoUrl ? `<div class="detail-photo" style="background-image: url('${escapeUrl(photoUrl)}')"></div>` : '';
+
+  document.getElementById('detail-body').innerHTML = `
+    ${photo}
+    <h2 class="detail-name">${escapeHTML(l.name)}</h2>
+    <div class="detail-meta">
+      <span class="detail-prov-pill"><i class="ti ti-map-pin"></i> ${escapeHTML(l.province)}</span>
+      <span class="cat-pill" style="background: ${c.pillBg}; color: ${c.pillColor}; padding: 4px 11px; font-size: 11px;">${c.label}</span>
+      ${stars ? `<span style="color: var(--star); font-size: 16px; letter-spacing: 2px;">${stars}<span style="color: #DDD3C5;">${emptyStars}</span></span>` : ''}
+    </div>
+    ${l.address ? `
+      <div class="detail-section">
+        <div class="detail-label">Địa chỉ</div>
+        <div class="detail-addr"><i class="ti ti-map-pin"></i><span>${escapeHTML(l.address)}</span></div>
+      </div>` : ''}
+    ${l.description ? `
+      <div class="detail-section">
+        <div class="detail-label">Ghi chú</div>
+        <p class="detail-text">${escapeHTML(l.description)}</p>
+      </div>` : ''}
+    <div class="detail-actions">
+      <a class="detail-btn primary" href="https://www.google.com/maps/search/?api=1&query=${mapsQ}" target="_blank" rel="noopener">
+        <i class="ti ti-brand-google-maps"></i> Mở Google Maps
+      </a>
+      <button class="detail-btn" onclick="closeDetail(); openEdit('${l.id}')"><i class="ti ti-pencil"></i> Sửa</button>
+      <button class="detail-btn danger" onclick="doDelete('${l.id}'); closeDetail();"><i class="ti ti-trash"></i> Xóa</button>
+    </div>
+  `;
+  document.getElementById('detail-overlay').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeDetail() {
+  document.getElementById('detail-overlay').classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+// EDIT
 function openEdit(id = null) {
   editId = id;
   rating = 0;
@@ -1131,41 +1299,53 @@ function openEdit(id = null) {
   if (id) {
     const l = locs.find(x => x.id === id);
     document.getElementById('f-name').value = l.name || '';
-    document.getElementById('f-prov').value = l.province || '';
+    setComboValue('f-prov-trigger', l.province || '');
     document.getElementById('f-cat').value = l.category || '';
     document.getElementById('f-addr').value = l.address || '';
     document.getElementById('f-desc').value = l.description || '';
+    document.getElementById('f-photo').value = l.photoUrl || '';
     rating = l.rating || 0;
   } else {
-    ['f-name', 'f-addr', 'f-desc'].forEach(x => document.getElementById(x).value = '');
-    document.getElementById('f-prov').value = '';
+    ['f-name', 'f-addr', 'f-desc', 'f-photo'].forEach(x => document.getElementById(x).value = '');
+    setComboValue('f-prov-trigger', '');
     document.getElementById('f-cat').value = '';
     rating = 0;
   }
+  updatePhotoPreview();
   updStars();
   document.getElementById('edit-overlay').classList.add('on');
   document.body.style.overflow = 'hidden';
   setTimeout(() => document.getElementById('f-name').focus(), 300);
 }
-
 function closeEdit() {
   document.getElementById('edit-overlay').classList.remove('on');
   document.body.style.overflow = '';
   editId = null;
 }
+function updatePhotoPreview() {
+  const url = document.getElementById('f-photo').value.trim();
+  const preview = document.getElementById('photo-preview');
+  if (url) {
+    preview.style.backgroundImage = `url('${url.replace(/'/g, "%27")}')`;
+    preview.classList.add('show');
+  } else {
+    preview.classList.remove('show');
+  }
+}
 
 async function doSave() {
   const name = document.getElementById('f-name').value.trim();
-  const province = document.getElementById('f-prov').value;
+  const province = getComboValue('f-prov-trigger');
   const category = document.getElementById('f-cat').value;
   if (!name || !province || !category) {
-    alert('Vui lòng nhập tên, chọn tỉnh thành và loại hình.');
+    alert('Vui lòng nhập tên, chọn địa danh và loại hình.');
     return;
   }
   const data = {
     name, province, category,
     address: document.getElementById('f-addr').value.trim(),
     description: document.getElementById('f-desc').value.trim(),
+    photoUrl: document.getElementById('f-photo').value.trim(),
     rating
   };
 
@@ -1177,12 +1357,7 @@ async function doSave() {
       } else {
         await addDoc(collection(db, FB_COLLECTION), { ...data, createdAt: Date.now() });
       }
-      // onSnapshot sẽ tự re-render
-    } catch (e) {
-      console.error(e);
-      toast('Lỗi khi lưu, kiểm tra mạng', 'error');
-      return;
-    }
+    } catch (e) { console.error(e); toast('Lỗi khi lưu, kiểm tra mạng'); return; }
   } else {
     if (editId) {
       const i = locs.findIndex(x => x.id === editId);
@@ -1194,7 +1369,7 @@ async function doSave() {
     render();
   }
   closeEdit();
-  toast(editId ? 'Đã cập nhật địa điểm' : 'Đã thêm địa điểm mới');
+  toast(editId ? 'Đã cập nhật' : 'Đã thêm địa điểm');
 }
 
 async function doDelete(id) {
@@ -1203,11 +1378,7 @@ async function doDelete(id) {
     try {
       const { db, doc, deleteDoc } = window.firebase;
       await deleteDoc(doc(db, FB_COLLECTION, id));
-    } catch (e) {
-      console.error(e);
-      toast('Lỗi khi xóa', 'error');
-      return;
-    }
+    } catch (e) { console.error(e); toast('Lỗi khi xóa'); return; }
   } else {
     locs = locs.filter(l => l.id !== id);
     saveLocal();
@@ -1220,10 +1391,8 @@ function updStars() {
   document.querySelectorAll('.s-btn').forEach(b => b.classList.toggle('on', parseInt(b.dataset.v) <= rating));
 }
 
-// ─── Share ───
+// FILE EXPORT/IMPORT
 function openShare() {
-  document.getElementById('export-data').value = JSON.stringify(locs, null, 2);
-  document.getElementById('import-data').value = '';
   document.getElementById('share-overlay').classList.add('on');
   document.body.style.overflow = 'hidden';
 }
@@ -1231,62 +1400,75 @@ function closeShare() {
   document.getElementById('share-overlay').classList.remove('on');
   document.body.style.overflow = '';
 }
-function doCopyExport() {
-  const ta = document.getElementById('export-data');
-  navigator.clipboard.writeText(ta.value)
-    .then(() => toast('Đã sao chép vào clipboard'))
-    .catch(() => { ta.select(); document.execCommand('copy'); toast('Đã sao chép'); });
+function exportFile() {
+  if (!locs.length) { alert('Chưa có địa điểm nào để xuất.'); return; }
+  const data = locs.map(({ id, ...rest }) => rest);
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const date = new Date().toISOString().slice(0, 10);
+  a.download = `cam-nang-${date}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  toast(`Đã tải file backup (${locs.length} địa điểm)`);
 }
-async function doImportMerge() {
+function pickImport(mode) {
+  pendingImportMode = mode;
+  document.getElementById('import-file').click();
+}
+async function handleFileImport(e) {
+  const file = e.target.files[0];
+  e.target.value = '';
+  if (!file) return;
+  const mode = pendingImportMode;
+  pendingImportMode = null;
   try {
-    const d = JSON.parse(document.getElementById('import-data').value);
-    if (!Array.isArray(d)) throw 0;
-    if (window.useFirebase) {
-      const { db, collection, addDoc } = window.firebase;
-      let added = 0;
-      for (const item of d) {
-        const { id, ...data } = item;
-        await addDoc(collection(db, FB_COLLECTION), data);
-        added++;
+    const text = await file.text();
+    const data = JSON.parse(text);
+    if (!Array.isArray(data)) throw new Error('Not an array');
+    if (mode === 'replace') {
+      if (!confirm(`Thay thế TOÀN BỘ ${locs.length} địa điểm hiện tại bằng ${data.length} địa điểm trong file? Hành động này không thể hoàn tác.`)) return;
+      if (window.useFirebase) {
+        const { db, collection, doc, deleteDoc, addDoc } = window.firebase;
+        for (const l of locs) await deleteDoc(doc(db, FB_COLLECTION, l.id));
+        for (const item of data) {
+          const { id, ...d } = item;
+          await addDoc(collection(db, FB_COLLECTION), d);
+        }
+      } else {
+        locs = data.map((item, i) => ({ ...item, id: item.id || 'l' + (Date.now() + i) }));
+        saveLocal(); render();
       }
-      toast(`Đã thêm ${added} địa điểm`);
+      toast(`Đã nhập ${data.length} địa điểm`);
     } else {
-      const ids = new Set(locs.map(l => l.id));
-      const added = d.filter(l => !ids.has(l.id));
-      locs = [...locs, ...added];
-      saveLocal();
-      render();
-      toast(`Đã gộp ${added.length} địa điểm`);
+      const existing = new Set(locs.map(l => `${l.name}|${l.province}`));
+      const newOnes = data.filter(l => !existing.has(`${l.name}|${l.province}`));
+      if (window.useFirebase) {
+        const { db, collection, addDoc } = window.firebase;
+        for (const item of newOnes) {
+          const { id, ...d } = item;
+          await addDoc(collection(db, FB_COLLECTION), d);
+        }
+      } else {
+        const added = newOnes.map((item, i) => ({ ...item, id: 'l' + (Date.now() + i) }));
+        locs = [...locs, ...added];
+        saveLocal(); render();
+      }
+      const skipped = data.length - newOnes.length;
+      toast(`Đã thêm ${newOnes.length} địa điểm mới${skipped > 0 ? ` (bỏ qua ${skipped} trùng)` : ''}`);
     }
     closeShare();
-  } catch (e) { alert('Dữ liệu không hợp lệ!'); }
-}
-async function doImportReplace() {
-  if (!confirm('Thay thế TOÀN BỘ dữ liệu hiện tại? Hành động này không thể hoàn tác.')) return;
-  try {
-    const d = JSON.parse(document.getElementById('import-data').value);
-    if (!Array.isArray(d)) throw 0;
-    if (window.useFirebase) {
-      const { db, collection, doc, deleteDoc, addDoc } = window.firebase;
-      // Delete all current
-      for (const l of locs) {
-        await deleteDoc(doc(db, FB_COLLECTION, l.id));
-      }
-      for (const item of d) {
-        const { id, ...data } = item;
-        await addDoc(collection(db, FB_COLLECTION), data);
-      }
-    } else {
-      locs = d;
-      saveLocal();
-      render();
-    }
-    closeShare();
-    toast(`Đã nhập ${d.length} địa điểm`);
-  } catch (e) { alert('Dữ liệu không hợp lệ!'); }
+  } catch (err) {
+    console.error(err);
+    alert('File không hợp lệ! Đảm bảo đây là file .json được xuất từ Cẩm nang.');
+  }
 }
 
-// ─── Toast ───
+// TOAST
 let toastTimer;
 function toast(msg) {
   document.getElementById('toast-msg').textContent = msg;
@@ -1296,30 +1478,25 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.classList.remove('on'), 2400);
 }
 
-// Close overlay on background click
+// CLOSE OVERLAYS
 document.getElementById('edit-overlay').addEventListener('click', e => { if (e.target.id === 'edit-overlay') closeEdit(); });
 document.getElementById('share-overlay').addEventListener('click', e => { if (e.target.id === 'share-overlay') closeShare(); });
-// Close on ESC
+document.getElementById('detail-overlay').addEventListener('click', e => { if (e.target.id === 'detail-overlay') closeDetail(); });
+document.getElementById('combo-overlay').addEventListener('click', e => { if (e.target.id === 'combo-overlay') closeCombo(); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    closeEdit();
-    closeShare();
+    if (document.getElementById('combo-overlay').classList.contains('on')) closeCombo();
+    else { closeEdit(); closeShare(); closeDetail(); }
   }
 });
 
-// Expose functions for inline onclick handlers
-window.doFilter = doFilter;
-window.clearSearch = clearSearch;
-window.setCat = setCat;
-window.openEdit = openEdit;
-window.closeEdit = closeEdit;
-window.doSave = doSave;
-window.doDelete = doDelete;
-window.openShare = openShare;
-window.closeShare = closeShare;
-window.doCopyExport = doCopyExport;
-window.doImportMerge = doImportMerge;
-window.doImportReplace = doImportReplace;
+Object.assign(window, {
+  doFilter, clearSearch, setCat, setView, toggleProv,
+  openEdit, closeEdit, doSave, doDelete, updatePhotoPreview,
+  openDetail, closeDetail,
+  openShare, closeShare, exportFile, pickImport,
+  openCombo, closeCombo, selectCombo, filterCombo, clearComboSearch,
+});
 </script>
 </body>
 </html>
